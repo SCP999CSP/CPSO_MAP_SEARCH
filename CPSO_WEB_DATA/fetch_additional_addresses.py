@@ -1,7 +1,7 @@
 """
 从 CPSO 医生详情页抓取附加地址，写入 doctor_addresses 表。
-cpso_number 从数据库查询 additional_address_count > 0 的医生，仅插入 is_primary=False 的附加地址。
-插入前检查 DB 是否已存在（full_address/postal_code），避免重复。
+仅处理 additional_address_count > 0 且「应有数量 != 数据库已有数量」的医生，避免无效遍历。
+地址存储时用逗号分隔多行（如 br 分隔），便于 geo 搜索。
 
 运行：python fetch_additional_addresses.py [--limit N] [--dry-run]
 """
@@ -32,17 +32,29 @@ HEADERS = {
 
 
 def _extract_postal_code(text: str) -> str | None:
-    m = re.search(r"[A-Z]\d[A-Z]\s*\d[A-Z]\d", text, re.IGNORECASE)
+    m = re.search(r"[A-Z]\d[A-Z]\s*\d[A-Z]\d", text, re.IGNOR.ECASE)
     return m.group(0).strip() if m else None
+
+
+def _normalize_address_for_geo(addr_text: str) -> str:
+    """
+    将多行地址（如 <br> 分隔）转为逗号分隔，便于 geo 搜索。
+    例如: "555 Mapleview Drive West\\nUnit 6\\nBarrie Ontario L4N 8G5"
+    -> "555 Mapleview Drive West, Unit 6, Barrie Ontario L4N 8G5"
+    """
+    addr_text = (addr_text or "").strip()
+    parts = [p.strip() for p in re.split(r"[\n\r]+|\s{2,}", addr_text) if p.strip()]
+    return ", ".join(parts) if parts else addr_text
 
 
 def _parse_address_block(addr_text: str, phone: str | None, fax: str | None) -> dict:
     """
     从地址文本解析 street1-4, city, province, postal_code。
     页面可能将多行拼接，以邮编为锚点拆分 city/province。
+    full_address 使用逗号分隔，便于 geo 搜索。
     """
     addr_text = (addr_text or "").strip()
-    full = addr_text
+    full = _normalize_address_for_geo(addr_text)
     postal_code = _extract_postal_code(addr_text)
     street1 = street2 = street3 = street4 = city = province = None
 
@@ -194,9 +206,24 @@ def insert_address(conn, cpso_number: str, addr: dict) -> bool:
 
 
 def load_doctors_with_additional(conn, limit: int = 0) -> list[tuple[str, int]]:
-    """从数据库查询 additional_address_count > 0 的医生，返回 (cpso_number, additional_address_count)。"""
+    """
+    从数据库查询 additional_address_count > 0 且「应有数量 != 数据库已有数量」的医生。
+    仅返回需要补充抓取的记录。
+    """
     with conn.cursor() as cur:
-        sql = "SELECT cpso_number, additional_address_count FROM doctors WHERE additional_address_count > 0 ORDER BY cpso_number"
+        sql = """
+            SELECT d.cpso_number, d.additional_address_count
+            FROM doctors d
+            LEFT JOIN (
+                SELECT cpso_number, COUNT(*) AS cnt
+                FROM doctor_addresses
+                WHERE is_primary = FALSE
+                GROUP BY cpso_number
+            ) da ON d.cpso_number = da.cpso_number
+            WHERE d.additional_address_count > 0
+              AND COALESCE(da.cnt, 0) != d.additional_address_count
+            ORDER BY d.cpso_number
+        """
         if limit:
             sql += f" LIMIT {int(limit)}"
         cur.execute(sql)
@@ -237,11 +264,11 @@ def main():
         conn.close()
         return
     if not doctor_list:
-        print("未找到 additional_address_count > 0 的医生")
+        print("未找到需补充的医生（应有数量与数据库不符的 additional_address_count > 0 记录）")
         conn.close()
         return
 
-    print(f"待处理: {len(doctor_list)} 个医生（additional_address_count > 0）")
+    print(f"待处理: {len(doctor_list)} 个医生（应有数量与数据库不符）")
     if args.dry_run:
         print("（dry-run 模式，不写入数据库）")
     total_inserted = 0

@@ -5,6 +5,7 @@ import uuid
 from datetime import datetime
 from typing import Optional
 
+from sqlalchemy import Column, Text
 from sqlmodel import Field, Index, SQLModel
 
 
@@ -16,6 +17,13 @@ class Doctor(SQLModel, table=True):
     full_name: str
     registration_status: Optional[str] = None
     registration_status_label: Optional[str] = None
+    gender: Optional[str] = None
+    medical_school: Optional[str] = None
+    languages_spoken: Optional[str] = Field(
+        default=None,
+        sa_column=Column(Text, nullable=True),
+    )
+    graduate_data: Optional[str] = None
     additional_address_count: int = 0
     created_at: datetime = Field(default_factory=datetime.utcnow)
     updated_at: datetime = Field(default_factory=datetime.utcnow)

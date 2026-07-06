@@ -49,6 +49,27 @@ function getDoctorUrl(cpsoNumber: string): string {
   return `https://register.cpso.on.ca/physician-info/?cpsonum=${encodeURIComponent(cpsoNumber)}`;
 }
 
+/** CPSO 注册页以外的档案字段（与 export_to_json 导出一致） */
+function DoctorProfileFields({ r }: { r: DoctorAddressRecord }) {
+  const lineStyle = { fontSize: 15, lineHeight: 1.45 } as const;
+  return (
+    <>
+      {r.gender && (
+        <div style={lineStyle}>Gender: {r.gender}</div>
+      )}
+      {r.medical_school && (
+        <div style={lineStyle}>Medical school: {r.medical_school}</div>
+      )}
+      {r.languages && (
+        <div style={lineStyle}>Languages: {r.languages}</div>
+      )}
+      {r.graduate_data && (
+        <div style={lineStyle}>Graduated: {r.graduate_data}</div>
+      )}
+    </>
+  );
+}
+
 const NOMINATIM_URL = "https://nominatim.openstreetmap.org/search";
 const SEARCH_USER_AGENT = "CPSO-Map-Search/1.0";
 
@@ -246,9 +267,9 @@ export default function MapPage() {
         <div
           style={{
             background: "rgba(255,255,255,0.92)",
-            padding: "8px 14px",
+            padding: "10px 16px",
             borderRadius: 8,
-            fontSize: 14,
+            fontSize: 16,
             boxShadow: "0 2px 8px rgba(0,0,0,0.12)",
           }}
         >
@@ -256,7 +277,7 @@ export default function MapPage() {
           <strong>{groups.length}</strong> 个点位
           {groups.length < records.length && (
             <span style={{ color: "#1d4ed8" }}>
-              （多笔在同一坐标已合并为数字标记）
+              （邻近点位已合并为数字标记）
             </span>
           )}
         </div>
@@ -281,11 +302,11 @@ export default function MapPage() {
             }}
             onKeyDown={(e) => e.key === "Enter" && handleSearch()}
             style={{
-              width: 260,
-              padding: "6px 10px",
+              width: 280,
+              padding: "8px 12px",
               border: "1px solid #e5e7eb",
               borderRadius: 6,
-              fontSize: 14,
+              fontSize: 16,
               outline: "none",
             }}
           />
@@ -294,20 +315,20 @@ export default function MapPage() {
             onClick={handleSearch}
             disabled={searchLoading || !searchQuery.trim()}
             style={{
-              padding: "6px 14px",
+              padding: "8px 16px",
               background: "#1d4ed8",
               color: "white",
               border: "none",
               borderRadius: 6,
               cursor: searchLoading ? "wait" : "pointer",
-              fontSize: 14,
+              fontSize: 16,
               fontWeight: 500,
             }}
           >
             {searchLoading ? "搜索中…" : "定位"}
           </button>
           {searchError && (
-            <span style={{ fontSize: 13, color: "#b91c1c" }}>{searchError}</span>
+            <span style={{ fontSize: 15, color: "#b91c1c" }}>{searchError}</span>
           )}
         </div>
       </div>
@@ -335,7 +356,7 @@ export default function MapPage() {
               ? `${label}\n${n}+ 位医生`
               : g.records.length === 1
                 ? `${label ?? first.full_name}\n${first.phone ? `Phone: ${first.phone}\n` : ""}${first.fax ? `Fax: ${first.fax}` : ""}\n点击查看详情`
-                : `${label ?? "同一地址"} ${n} 位医生\n${g.records.slice(0, 3).map((r) => r.full_name).join("；")}${g.records.length > 3 ? "…" : ""}\n点击圆点打开列表`;
+                : `${label ?? "邻近点位"} ${n} 位医生\n${g.records.slice(0, 3).map((r) => r.full_name).join("；")}${g.records.length > 3 ? "…" : ""}\n点击圆点打开列表`;
 
           const isSelected = selectedKey === g.key;
 
@@ -356,15 +377,22 @@ export default function MapPage() {
               >
                 {isSelected && (
                   <InfoWindow onCloseClick={() => setSelectedKey(null)}>
-                    <div style={{ minWidth: 200, textAlign: "left" }}>
+                    <div
+                      style={{
+                        minWidth: 220,
+                        textAlign: "left",
+                        fontSize: 16,
+                        lineHeight: 1.45,
+                      }}
+                    >
                       <strong>{label}</strong>
-                      <p style={{ margin: "8px 0 0", fontSize: "0.9em" }}>
+                      <p style={{ margin: "8px 0 0", fontSize: 15 }}>
                         {n}+ 位医生在此机构执业
                       </p>
                       <p
                         style={{
                           margin: "8px 0 0",
-                          fontSize: "0.8em",
+                          fontSize: 14,
                           color: "#666",
                         }}
                       >
@@ -388,33 +416,44 @@ export default function MapPage() {
               >
                 {isSelected && (
                   <InfoWindow onCloseClick={() => setSelectedKey(null)}>
-                    <div>
-                      <strong>{label ?? first.full_name}</strong>
-                      <br />
-                      CPSO: {first.cpso_number}
+                    <div
+                      style={{
+                        fontSize: 16,
+                        lineHeight: 1.5,
+                        maxWidth: 320,
+                      }}
+                    >
+                      <strong style={{ fontSize: 17 }}>
+                        {label ?? first.full_name}
+                      </strong>
+                      <div style={{ marginTop: 6, fontSize: 15 }}>
+                        CPSO: {first.cpso_number}
+                      </div>
+                      <DoctorProfileFields r={first} />
                       {first.phone && (
-                        <>
-                          <br />
+                        <div style={{ fontSize: 15, marginTop: 4 }}>
                           Phone: {first.phone}
-                        </>
+                        </div>
                       )}
                       {first.fax && (
-                        <>
-                          <br />
+                        <div style={{ fontSize: 15, marginTop: 4 }}>
                           Fax: {first.fax}
-                        </>
+                        </div>
                       )}
                       {first.full_address && (
-                        <>
-                          <br />
+                        <div style={{ fontSize: 15, marginTop: 4 }}>
                           {first.full_address}
-                        </>
+                        </div>
                       )}
-                      <br />
                       <button
                         type="button"
                         onClick={() => handleMarkerClick(first)}
-                        style={{ marginTop: 8, cursor: "pointer" }}
+                        style={{
+                          marginTop: 12,
+                          cursor: "pointer",
+                          fontSize: 15,
+                          padding: "6px 12px",
+                        }}
                       >
                         查看医生详情
                       </button>
@@ -443,44 +482,71 @@ export default function MapPage() {
                 <InfoWindow onCloseClick={() => setSelectedKey(null)}>
                   <div
                     style={{
-                      maxHeight: 280,
+                      maxHeight: 320,
                       overflowY: "auto",
-                      minWidth: 220,
+                      minWidth: 260,
                       textAlign: "left",
+                      fontSize: 15,
+                      lineHeight: 1.45,
                     }}
                   >
-                    <strong>
-                      {label ?? "同一坐标"} {n} 条记录
+                    <strong style={{ fontSize: 17 }}>
+                      {label ?? "邻近点位"} {n} 条记录
                     </strong>
-                    <p style={{ fontSize: "0.85em", margin: "6px 0 10px" }}>
-                      多条地址 geocode 到相同位置，故合并显示。
+                    <p style={{ fontSize: 14, margin: "8px 0 12px", color: "#4b5563" }}>
+                      约 55m 范围内的地址已合并显示。
                     </p>
                     {g.records.map((r) => (
                       <div
                         key={r.id}
                         style={{
                           borderTop: "1px solid #e5e7eb",
-                          padding: "8px 0",
+                          padding: "10px 0",
                         }}
                       >
-                        <div style={{ fontWeight: 600 }}>{r.full_name}</div>
-                        <div style={{ fontSize: "0.85em" }}>
-                          CPSO: {r.cpso_number}
+                        <div style={{ fontWeight: 600, fontSize: 16 }}>
+                          {r.full_name}
                         </div>
+                        <div style={{ fontSize: 15, marginTop: 4 }}>
+                          CPSO: {r.cpso_number}
+                          <DoctorProfileFields r={r} />
+                        </div>
+                        {(r.full_address ||
+                          [r.city, r.province, r.postal_code].filter(
+                            Boolean
+                          ).length > 0) && (
+                          <div
+                            style={{
+                              fontSize: 15,
+                              color: "#4b5563",
+                              marginTop: 6,
+                            }}
+                          >
+                            {r.full_address ??
+                              [r.city, r.province, r.postal_code]
+                                .filter(Boolean)
+                                .join(", ")}
+                          </div>
+                        )}
                         {r.phone && (
-                          <div style={{ fontSize: "0.85em" }}>
+                          <div style={{ fontSize: 15, marginTop: 4 }}>
                             Phone: {r.phone}
                           </div>
                         )}
                         {r.fax && (
-                          <div style={{ fontSize: "0.85em" }}>
+                          <div style={{ fontSize: 15, marginTop: 4 }}>
                             Fax: {r.fax}
                           </div>
                         )}
                         <button
                           type="button"
                           onClick={() => handleMarkerClick(r)}
-                          style={{ marginTop: 6, cursor: "pointer" }}
+                          style={{
+                            marginTop: 8,
+                            cursor: "pointer",
+                            fontSize: 15,
+                            padding: "5px 10px",
+                          }}
                         >
                           查看详情
                         </button>

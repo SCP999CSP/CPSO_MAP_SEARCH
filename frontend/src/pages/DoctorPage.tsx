@@ -49,15 +49,62 @@ export default function DoctorPage() {
   const doctor = records[0];
 
   return (
-    <div style={{ padding: 24, maxWidth: 600 }}>
-      <Link to="/" style={{ marginBottom: 16, display: "inline-block" }}>
+    <div
+      style={{
+        padding: 24,
+        maxWidth: 640,
+        fontSize: 17,
+        lineHeight: 1.55,
+      }}
+    >
+      <Link
+        to="/"
+        style={{ marginBottom: 16, display: "inline-block", fontSize: 16 }}
+      >
         ← 返回地图
       </Link>
-      <h1>{doctor.full_name}</h1>
-      <p>
+      <h1 style={{ fontSize: "1.75rem", marginBottom: 12 }}>
+        {doctor.full_name}
+      </h1>
+      <p style={{ fontSize: 17, margin: "8px 0" }}>
         <strong>CPSO 注册号:</strong> {doctor.cpso_number}
       </p>
-      <h2>地址与联系方式</h2>
+      {(doctor.gender ||
+        doctor.medical_school ||
+        doctor.languages ||
+        doctor.graduate_data) && (
+        <div
+          style={{
+            marginTop: 12,
+            padding: "14px 16px",
+            background: "#f9fafb",
+            borderRadius: 8,
+            fontSize: 16,
+          }}
+        >
+          {doctor.gender && (
+            <p style={{ margin: "0 0 8px" }}>
+              <strong>Gender:</strong> {doctor.gender}
+            </p>
+          )}
+          {doctor.medical_school && (
+            <p style={{ margin: "0 0 8px" }}>
+              <strong>Medical school:</strong> {doctor.medical_school}
+            </p>
+          )}
+          {doctor.languages && (
+            <p style={{ margin: "0 0 8px" }}>
+              <strong>Languages:</strong> {doctor.languages}
+            </p>
+          )}
+          {doctor.graduate_data && (
+            <p style={{ margin: 0 }}>
+              <strong>Graduated:</strong> {doctor.graduate_data}
+            </p>
+          )}
+        </div>
+      )}
+      <h2 style={{ fontSize: "1.35rem", marginTop: 24 }}>地址与联系方式</h2>
       {records.map((r, i) => (
         <div
           key={r.id}

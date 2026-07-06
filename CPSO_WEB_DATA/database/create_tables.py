@@ -1,5 +1,8 @@
 """
-用 SQLModel 删除旧表并创建新表。
+用 SQLModel 删除旧表并创建新表（开发用；会清空数据）。
+
+日常 schema 变更请用 Alembic：uv run alembic upgrade head
+
 运行：python -m database.create_tables
 """
 import os
