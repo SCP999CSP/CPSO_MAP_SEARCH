@@ -32,7 +32,7 @@ HEADERS = {
 
 
 def _extract_postal_code(text: str) -> str | None:
-    m = re.search(r"[A-Z]\d[A-Z]\s*\d[A-Z]\d", text, re.IGNOR.ECASE)
+    m = re.search(r"[A-Z]\d[A-Z]\s*\d[A-Z]\d", text, re.IGNORECASE)
     return m.group(0).strip() if m else None
 
 
