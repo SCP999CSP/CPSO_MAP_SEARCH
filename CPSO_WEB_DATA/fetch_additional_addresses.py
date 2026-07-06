@@ -1,7 +1,8 @@
 """
 从 CPSO 医生详情页抓取附加地址，写入 doctor_addresses 表。
-仅处理 additional_address_count > 0 且「应有数量 != 数据库已有数量」的医生，避免无效遍历。
-地址存储时用逗号分隔多行（如 br 分隔），便于 geo 搜索。
+sync_additional_addresses() 供 search.py 按 cpso_number 同步附加地址（删旧插新）。
+
+独立运行时默认仅处理 additional_address_count > 0 且条数不符的医生（历史数据补缺）。
 
 运行：python fetch_additional_addresses.py [--limit N] [--dry-run]
 """
@@ -156,25 +157,9 @@ def fetch_additional_addresses(cpso_number: str) -> list[dict]:
     return dedup
 
 
-def insert_address(conn, cpso_number: str, addr: dict) -> bool:
-    """插入地址，若已存在则跳过。与 search.py 逻辑一致。"""
+def _insert_address_row(conn, cpso_number: str, addr: dict) -> None:
+    """插入一条 doctor_addresses 记录。"""
     with conn.cursor() as cur:
-        full = addr.get("full_address")
-        if full:
-            cur.execute(
-                "SELECT 1 FROM doctor_addresses WHERE cpso_number = %s AND full_address = %s",
-                (cpso_number, full),
-            )
-            if cur.fetchone():
-                return False
-        elif addr.get("postal_code"):
-            cur.execute(
-                "SELECT 1 FROM doctor_addresses WHERE cpso_number = %s AND postal_code = %s AND (full_address IS NULL OR full_address = '')",
-                (cpso_number, addr["postal_code"]),
-            )
-            if cur.fetchone():
-                return False
-
         cur.execute(
             """
             INSERT INTO doctor_addresses (
@@ -202,7 +187,38 @@ def insert_address(conn, cpso_number: str, addr: dict) -> bool:
                 addr.get("fax"),
             ),
         )
-        return True
+
+
+def clear_additional_addresses(conn, cpso_number: str) -> int:
+    """删除该医生所有附加地址（is_primary=false）。返回删除条数。"""
+    with conn.cursor() as cur:
+        cur.execute(
+            "DELETE FROM doctor_addresses WHERE cpso_number = %s AND is_primary = FALSE",
+            (cpso_number,),
+        )
+        return cur.rowcount
+
+
+def sync_additional_addresses(
+    conn,
+    cpso_number: str,
+    *,
+    sleep_after_fetch: bool = True,
+) -> tuple[int, int]:
+    """
+    从详情页抓取并同步该医生的附加地址：删旧 is_primary=false，再插入最新结果。
+    返回 (删除条数, 插入条数)。
+    """
+    addrs = fetch_additional_addresses(cpso_number)
+    if sleep_after_fetch:
+        time.sleep(0.5)
+
+    deleted = clear_additional_addresses(conn, cpso_number)
+    inserted = 0
+    for addr in addrs:
+        _insert_address_row(conn, cpso_number, addr)
+        inserted += 1
+    return deleted, inserted
 
 
 def load_doctors_with_additional(conn, limit: int = 0) -> list[tuple[str, int]]:
@@ -276,25 +292,23 @@ def main():
         for i, (cpso, add_count) in enumerate(doctor_list, 1):
             try:
                 db_existing = get_additional_address_count(conn, cpso)
-                addrs = fetch_additional_addresses(cpso)
-                inserted = 0
-                for addr in addrs:
-                    if args.dry_run:
-                        inserted += 1
-                    elif insert_address(conn, cpso, addr):
-                        inserted += 1
+                if args.dry_run:
+                    addrs = fetch_additional_addresses(cpso)
+                    deleted, inserted = db_existing, len(addrs)
+                    time.sleep(0.5)
+                else:
+                    deleted, inserted = sync_additional_addresses(conn, cpso)
                 total_inserted += inserted
                 print(
                     f"  [{i}/{len(doctor_list)}] {cpso}: 应有 {add_count}, "
-                    f"数据库已有 {db_existing}, 抓取 {len(addrs)}, 插入 {inserted}"
+                    f"原数据库 {db_existing}, 删 {deleted}, 插 {inserted}"
                 )
             except Exception as e:
                 print(f"  [{i}/{len(doctor_list)}] {cpso}: 错误 - {e}")
             if conn and not args.dry_run:
                 conn.commit()
-            time.sleep(0.5)
 
-        print(f"\n完成: 共插入 {total_inserted} 条附加地址")
+        print(f"\n完成: 共同步插入 {total_inserted} 条附加地址")
     finally:
         if conn:
             conn.close()

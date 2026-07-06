@@ -1,67 +1,2125 @@
 mismatches:
-- input_postal_code: L4A 0
-  result_postal_code: L1Z 0M1
+- input_postal_code: L6X 0
+  result_postal_code: L2A 1Z1
   doctor:
-    cpso_number: '108744'
-    full_name: Laboni, Sadea   Arefin
+    cpso_number: '30474'
+    full_name: Kivlichan, Robert   Martin
     registration_status: Active
   address:
-    full_address: 105-300 Rossland Rd E, One Health Family Practice, Ajax, Ontario,
-      L1Z 0M1
-    street1: 105-300 Rossland Rd E
-    street2: One Health Family Practice
-    city: Ajax
-    province: Ontario
-    postal_code: L1Z 0M1
-    phone: 905-239-7663
-- input_postal_code: L4A 0
-  result_postal_code: K7L 2V7
-  doctor:
-    cpso_number: '121673'
-    full_name: Persaud, Alicia
-    registration_status: Active
-  address:
-    full_address: Kingston General Hospital, Division of Internal Medicine, 76 Stuart
-      St, Kingston, Ontario, K7L 2V7
-    street1: Kingston General Hospital
-    street2: Division of Internal Medicine
-    city: Kingston
-    province: Ontario
-    postal_code: K7L 2V7
-    phone: null
-- input_postal_code: L4A 0
-  result_postal_code: L4A 1H2
-  doctor:
-    cpso_number: '81151'
-    full_name: Ladak, Yasmin
-    registration_status: Active
-  address:
-    full_address: 2nd Floor, 34 Civic Avenue, Stouffville, Ontario, L4A 1H2
-    street1: 2nd Floor
-    street2: 34 Civic Avenue
-    city: Stouffville
-    province: Ontario
-    postal_code: L4A 1H2
-    phone: (905) 640-3100
-- input_postal_code: L4A 2
-  result_postal_code: L3P 7P3
-  doctor:
-    cpso_number: '95756'
-    full_name: Lau, Pamela Pek-Shan
-    registration_status: Active
-  address:
-    full_address: 381 Church Street, Markham, Ontario, L3P 7P3
-    street1: 381 Church Street
+    full_address: 230 Bertie Street, Fort Erie, Ontario, L2A 1Z1
+    street1: 230 Bertie Street
     street2: null
+    city: Fort Erie
+    province: Ontario
+    postal_code: L2A 1Z1
+    phone: 905 378 4647
+- input_postal_code: L6X 0
+  result_postal_code: L9W
+  doctor:
+    cpso_number: '107983'
+    full_name: Dhaliwal, Shawndeep
+    registration_status: Active
+  address:
+    full_address: 'Monora Park Drive, 301 Monora Park Drive, Postal code: L9W0E1,
+      Mono, Ontario, L9W'
+    street1: Monora Park Drive
+    street2: 301 Monora Park Drive
+    city: Mono
+    province: Ontario
+    postal_code: L9W
+    phone: '2262591555'
+- input_postal_code: L6X 0
+  result_postal_code: L7A 5M3
+  doctor:
+    cpso_number: '128113'
+    full_name: Virk, Gurpinderjit Singh
+    registration_status: Active
+  address:
+    full_address: 550 Veterans Drive, Veterans Medical Clinic, Unit 3, Brampton, Ontario,
+      L7A 5M3
+    street1: 550 Veterans Drive
+    street2: Veterans Medical Clinic
+    city: Brampton
+    province: Ontario
+    postal_code: L7A 5M3
+    phone: 905-843-0056
+- input_postal_code: L6X 0
+  result_postal_code: L6Y 0M2
+  doctor:
+    cpso_number: '269469'
+    full_name: Zeb, Jehan
+    registration_status: Active
+  address:
+    full_address: 475 Charolais Boulevard, Peel Medical Clinic, Brampton, Ontario,
+      L6Y 0M2
+    street1: 475 Charolais Boulevard
+    street2: Peel Medical Clinic
+    city: Brampton
+    province: Ontario
+    postal_code: L6Y 0M2
+    phone: (905) 454-3347
+- input_postal_code: L6X 0
+  result_postal_code: L7A 3A4
+  doctor:
+    cpso_number: '154112'
+    full_name: Gangwar, Anshika
+    registration_status: Active
+  address:
+    full_address: 10635 Creditview Road, Northview Medical Clinic, Brampton, Ontario,
+      L7A 3A4
+    street1: 10635 Creditview Road
+    street2: Northview Medical Clinic
+    city: Brampton
+    province: Ontario
+    postal_code: L7A 3A4
+    phone: (905) 495-6555
+- input_postal_code: L6X 1
+  result_postal_code: L9W 7T6
+  doctor:
+    cpso_number: '146521'
+    full_name: Gill, Parmpreet Singh
+    registration_status: Active
+  address:
+    full_address: 500 Alder Street, Alder Square Medical Center, Unit 200, Orangeville,
+      Ontario, L9W 7T6
+    street1: 500 Alder Street
+    street2: Alder Square Medical Center
+    city: Orangeville
+    province: Ontario
+    postal_code: L9W 7T6
+    phone: '5199414515'
+- input_postal_code: L6X 1
+  result_postal_code: L6W 3E1
+  doctor:
+    cpso_number: '75085'
+    full_name: Banerjee, Lopita
+    registration_status: Active
+  address:
+    full_address: Kennedy Medical Centre, 4A - 2 Kennedy Road South, Brampton, Ontario,
+      L6W 3E1
+    street1: Kennedy Medical Centre
+    street2: 4A - 2 Kennedy Road South
+    city: Brampton
+    province: Ontario
+    postal_code: L6W 3E1
+    phone: (905) 459-4385
+- input_postal_code: L6X 1
+  result_postal_code: L6W 3E1
+  doctor:
+    cpso_number: '71460'
+    full_name: Goel, Sanjeev
+    registration_status: Active
+  address:
+    full_address: 2 Kennedy Rd South, Unit 4A, Brampton, Ontario, L6W 3E1
+    street1: 2 Kennedy Rd South, Unit 4A
+    street2: null
+    city: Brampton
+    province: Ontario
+    postal_code: L6W 3E1
+    phone: (905) 459-4385
+- input_postal_code: L6X 1
+  result_postal_code: M1T 0A2
+  doctor:
+    cpso_number: '98983'
+    full_name: Jarbo, Ashraf
+    registration_status: Active
+  address:
+    full_address: Centre Street, Suit 210, 2330 Kennedy road, Scarborough, Toronto,
+      Ontario, M1T 0A2
+    street1: Centre Street
+    street2: Suit 210
+    city: Toronto
+    province: Ontario
+    postal_code: M1T 0A2
+    phone: 416-335-1717
+- input_postal_code: L6X 1
+  result_postal_code: L6W 4K6
+  doctor:
+    cpso_number: '94835'
+    full_name: Kaveri Selvan, Kaveri   Manian
+    registration_status: Active
+  address:
+    full_address: Queens Urgent Care & Medical Centre, 20 - 263 Queen St E, Brampton,
+      Ontario, L6W 4K6
+    street1: Queens Urgent Care & Medical Centre
+    street2: 20 - 263 Queen St E
+    city: Brampton
+    province: Ontario
+    postal_code: L6W 4K6
+    phone: (905) 497-2273
+- input_postal_code: L6X 1
+  result_postal_code: L6X 0H9
+  doctor:
+    cpso_number: '60267'
+    full_name: Earle, Harry   Trelawney
+    registration_status: Active
+  address:
+    full_address: Suite 208, Brampton, Ontario, L6X 0H9
+    street1: Suite 208
+    street2: null
+    city: Brampton
+    province: Ontario
+    postal_code: L6X 0H9
+    phone: 647 404 3067
+- input_postal_code: L6X 1
+  result_postal_code: M3H 1S8
+  doctor:
+    cpso_number: '77843'
+    full_name: Phillipson, Ronald   Anthony
+    registration_status: Active
+  address:
+    full_address: 302-333 Wilson Avenue, Toronto, Ontario, M3H 1S8
+    street1: 302-333 Wilson Avenue
+    street2: null
+    city: Toronto
+    province: Ontario
+    postal_code: M3H 1S8
+    phone: '6473171213'
+- input_postal_code: L6X 2
+  result_postal_code: L6X 0H9
+  doctor:
+    cpso_number: '92509'
+    full_name: Mekhael, Saly
+    registration_status: Active
+  address:
+    full_address: 100 Pertosa Drive, Brampton, Ontario, L6X 0H9
+    street1: 100 Pertosa Drive
+    street2: null
+    city: Brampton
+    province: Ontario
+    postal_code: L6X 0H9
+    phone: '9054511244'
+- input_postal_code: L6X 3
+  result_postal_code: M4J 1M3
+  doctor:
+    cpso_number: '91236'
+    full_name: Bienenstock, Leonard
+    registration_status: Active
+  address:
+    full_address: Comprehensive Treatment Clinic, 1154 Danforth, Toronto, Ontario,
+      M4J 1M3
+    street1: Comprehensive Treatment Clinic
+    street2: 1154 Danforth
+    city: Toronto
+    province: Ontario
+    postal_code: M4J 1M3
+    phone: 647-490-4008
+- input_postal_code: L6X 3
+  result_postal_code: L6R 3J7
+  doctor:
+    cpso_number: '90566'
+    full_name: Abu-Abed, Mohamed   Ismail
+    registration_status: Active
+  address:
+    full_address: Brampton Civic Hospital, 2100 Bovaird Dr E, Brampton, Ontario, L6R
+      3J7
+    street1: Brampton Civic Hospital
+    street2: 2100 Bovaird Dr E
+    city: Brampton
+    province: Ontario
+    postal_code: L6R 3J7
+    phone: (905) 494-2120
+- input_postal_code: L6X 4
+  result_postal_code: M1G 1P4
+  doctor:
+    cpso_number: '113346'
+    full_name: Chattergoon, Narayan
+    registration_status: Active
+  address:
+    full_address: 3585, Lawrence Avenue East, Unit 1A, Scarborough, Ontario, M1G 1P4
+    street1: '3585'
+    street2: Lawrence Avenue East
+    city: Scarborough
+    province: Ontario
+    postal_code: M1G 1P4
+    phone: (416) 431-0736
+- input_postal_code: L6X 4
+  result_postal_code: M9C 4Z5
+  doctor:
+    cpso_number: '129326'
+    full_name: Vayani, Farah Naz
+    registration_status: Active
+  address:
+    full_address: suite 100-1 Eva Road, Toronto, Ontario, M9C 4Z5
+    street1: suite 100-1 Eva Road
+    street2: null
+    city: Toronto
+    province: Ontario
+    postal_code: M9C 4Z5
+    phone: (647)-478-0558
+- input_postal_code: L6X 5
+  result_postal_code: L7A 0N5
+  doctor:
+    cpso_number: '85653'
+    full_name: Girgis, Ireen   Makram Aziz
+    registration_status: Active
+  address:
+    full_address: Unit 6, 10671 Chinguacousy Road, Brampton, Ontario, L7A 0N5
+    street1: Unit 6
+    street2: 10671 Chinguacousy Road
+    city: Brampton
+    province: Ontario
+    postal_code: L7A 0N5
+    phone: (905) 840-4343
+- input_postal_code: L6S 3
+  result_postal_code: L6S 5X9
+  doctor:
+    cpso_number: '143094'
+    full_name: Jirjis, Marian
+    registration_status: Active
+  address:
+    full_address: 9005 Torbram Road, Brampton, Ontario, L6S 5X9
+    street1: 9005 Torbram Road
+    street2: null
+    city: Brampton
+    province: Ontario
+    postal_code: L6S 5X9
+    phone: '9057923113'
+- input_postal_code: L6S 4
+  result_postal_code: L5B 0M5
+  doctor:
+    cpso_number: '115200'
+    full_name: Lee, Ji   Haeng
+    registration_status: Active
+  address:
+    full_address: 422 Burnhamthorpe Road West, Aboud Health Group, Mississauga, Ontario,
+      L5B 0M5
+    street1: 422 Burnhamthorpe Road West
+    street2: Aboud Health Group
+    city: Mississauga
+    province: Ontario
+    postal_code: L5B 0M5
+    phone: 647-255-6655
+- input_postal_code: L6S 5
+  result_postal_code: L6R 3J7
+  doctor:
+    cpso_number: '157298'
+    full_name: Anczurowski, Mark Steven
+    registration_status: Active
+  address:
+    full_address: 2100 Bovaird Drive East, William Osler Health Centre - Brampton
+      Civic Hospital, Brampton, Ontario, L6R 3J7
+    street1: 2100 Bovaird Drive East
+    street2: William Osler Health Centre - Brampton Civic Hospital
+    city: Brampton
+    province: Ontario
+    postal_code: L6R 3J7
+    phone: 905-494-2120
+- input_postal_code: L6S 6
+  result_postal_code: M4K 2P8
+  doctor:
+    cpso_number: '70681'
+    full_name: Sood, Alok   Pal
+    registration_status: Active
+  address:
+    full_address: Albany Medical Clinic, 807 Broadview Avenue, Toronto, Ontario, M4K
+      2P8
+    street1: Albany Medical Clinic
+    street2: 807 Broadview Avenue
+    city: Toronto
+    province: Ontario
+    postal_code: M4K 2P8
+    phone: (416) 461-9471
+- input_postal_code: L6S 6
+  result_postal_code: M6N 5H4
+  doctor:
+    cpso_number: '89374'
+    full_name: Gin, Christopher   Sei Whung
+    registration_status: Active
+  address:
+    full_address: 120 Weston Road, unit 101, Toronto, Ontario, M6N 5H4
+    street1: 120 Weston Road
+    street2: unit 101
+    city: Toronto
+    province: Ontario
+    postal_code: M6N 5H4
+    phone: 647-349-0053
+- input_postal_code: L6S 6
+  result_postal_code: L7G 2B8
+  doctor:
+    cpso_number: '91161'
+    full_name: Nandra, Sukhjeen   Kaur
+    registration_status: Active
+  address:
+    full_address: Halton Health Services Georgetown, c/o Department of Family Medicine,
+      1 Princess Anne Drive, Georgetown, Ontario, L7G 2B8
+    street1: Halton Health Services Georgetown
+    street2: c/o Department of Family Medicine
+    city: Georgetown
+    province: Ontario
+    postal_code: L7G 2B8
+    phone: 905-873-0111
+- input_postal_code: L6S 6
+  result_postal_code: L7G 2R8
+  doctor:
+    cpso_number: '74985'
+    full_name: Mah, Norman   Albert
+    registration_status: Active
+  address:
+    full_address: Halton Health Care Services, Georgetown Hospital, 1 Princess Anne
+      Drive, Georgetown, Ontario, L7G 2R8
+    street1: Halton Health Care Services
+    street2: Georgetown Hospital
+    city: Georgetown
+    province: Ontario
+    postal_code: L7G 2R8
+    phone: (905) 873-0111
+- input_postal_code: L6S 6
+  result_postal_code: L7G 2B8
+  doctor:
+    cpso_number: '65192'
+    full_name: Chow, Peter   Ming
+    registration_status: Active
+  address:
+    full_address: Georgetown Hospital, 1 Princess Anne Drive, Georgetown, Ontario,
+      L7G 2B8
+    street1: Georgetown Hospital
+    street2: 1 Princess Anne Drive
+    city: Georgetown
+    province: Ontario
+    postal_code: L7G 2B8
+    phone: (905) 873-0111
+- input_postal_code: L6R 0
+  result_postal_code: M9V 1R8
+  doctor:
+    cpso_number: '140992'
+    full_name: Saggar, Jasdeep Kaur
+    registration_status: Active
+  address:
+    full_address: 101 Humber College Boulevard, Toronto, Ontario, M9V 1R8
+    street1: 101 Humber College Boulevard
+    street2: null
+    city: Toronto
+    province: Ontario
+    postal_code: M9V 1R8
+    phone: 416-494-2120
+- input_postal_code: L6R 0
+  result_postal_code: '2212'
+  doctor:
+    cpso_number: '278941'
+    full_name: Anwar, Pervaiz
+    registration_status: Active
+  address:
+    full_address: 17 Marco Avenue, Revesby, New South Wales, 2212
+    street1: 17 Marco Avenue
+    street2: null
+    city: Revesby
+    province: New South Wales
+    postal_code: '2212'
+    phone: null
+- input_postal_code: L6R 0
+  result_postal_code: L7A 3E5
+  doctor:
+    cpso_number: '123462'
+    full_name: Minhas, Gurman
+    registration_status: Active
+  address:
+    full_address: 4-10725 McLaughlin Road, Brampton, Ontario, L7A 3E5
+    street1: 4-10725 McLaughlin Road
+    street2: null
+    city: Brampton
+    province: Ontario
+    postal_code: L7A 3E5
+    phone: 905-488-0581
+- input_postal_code: L6R 0
+  result_postal_code: L6R 3J5
+  doctor:
+    cpso_number: '54802'
+    full_name: Dhaliwal, Yadvinder   Singh
+    registration_status: Active
+  address:
+    full_address: 2250 Bovaird Drive East, Unit 101, Brampton, Ontario, L6R 3J5
+    street1: 2250 Bovaird Drive East
+    street2: Unit 101
+    city: Brampton
+    province: Ontario
+    postal_code: L6R 3J5
+    phone: '9056786365'
+- input_postal_code: L6R 0
+  result_postal_code: L6R 2S5
+  doctor:
+    cpso_number: '108876'
+    full_name: Thiryayi, Wasiq   Ahmad
+    registration_status: Active
+  address:
+    full_address: Great Lakes Medical Centre, 25 Great Lakes Drive, Brampton, Ontario,
+      L6R 2S5
+    street1: Great Lakes Medical Centre
+    street2: 25 Great Lakes Drive
+    city: Brampton
+    province: Ontario
+    postal_code: L6R 2S5
+    phone: (905) 494-0302
+- input_postal_code: L6R 0
+  result_postal_code: L6H 7G3
+  doctor:
+    cpso_number: '84724'
+    full_name: Voros, Gyula
+    registration_status: Active
+  address:
+    full_address: 112-1670 North Service Rd E, Oakville, ON, L6H 7G3
+    street1: 112-1670 North Service Rd E
+    street2: null
+    city: Oakville
+    province: 'ON'
+    postal_code: L6H 7G3
+    phone: 905-338-0813
+- input_postal_code: L6R 0
+  result_postal_code: M5J 2V5
+  doctor:
+    cpso_number: '117901'
+    full_name: Gidda, Rajaat
+    registration_status: Active
+  address:
+    full_address: 206 - 25 York Street, Telus Health MyCare, Toronto, Ontario, M5J
+      2V5
+    street1: 206 - 25 York Street
+    street2: Telus Health MyCare
+    city: Toronto
+    province: Ontario
+    postal_code: M5J 2V5
+    phone: 1-855-577-8838
+- input_postal_code: L6R 0
+  result_postal_code: M6P 1A9
+  doctor:
+    cpso_number: '138620'
+    full_name: Gu, Vivian Tian
+    registration_status: Active
+  address:
+    full_address: 1678 Bloor St W, Toronto, ON, M6P 1A9
+    street1: 1678 Bloor St W
+    street2: null
+    city: Toronto
+    province: 'ON'
+    postal_code: M6P 1A9
+    phone: '16473703203'
+- input_postal_code: L6R 0
+  result_postal_code: L6W 1X9
+  doctor:
+    cpso_number: '272872'
+    full_name: Abbas, Muhammad Naveed
+    registration_status: Active
+  address:
+    full_address: 80 Eastern Avenue, EASTERN MEDICAL CLINIC, Brampton, Ontario, L6W
+      1X9
+    street1: 80 Eastern Avenue
+    street2: EASTERN MEDICAL CLINIC
+    city: Brampton
+    province: Ontario
+    postal_code: L6W 1X9
+    phone: '9052887344'
+- input_postal_code: L6R 1
+  result_postal_code: L9R 1M1
+  doctor:
+    cpso_number: '130889'
+    full_name: Nam, Somin
+    registration_status: Active
+  address:
+    full_address: 200 Fletcher Cres, Stevenson Memorial Hospital, Alliston, ON, L9R
+      1M1
+    street1: 200 Fletcher Cres
+    street2: Stevenson Memorial Hospital
+    city: Alliston
+    province: 'ON'
+    postal_code: L9R 1M1
+    phone: null
+- input_postal_code: L6R 1
+  result_postal_code: M9V 1R8
+  doctor:
+    cpso_number: '77418'
+    full_name: Haider, Kamil
+    registration_status: Active
+  address:
+    full_address: William Osler Health System, Etobicoke General Hospital, Department
+      of Emergency Medicine, 101 Humber College Boulevard, Toronto, Ontario, M9V 1R8
+    street1: William Osler Health System
+    street2: Etobicoke General Hospital
+    city: Toronto
+    province: Ontario
+    postal_code: M9V 1R8
+    phone: (416) 747-3400
+- input_postal_code: L6R 1
+  result_postal_code: L9L 1L9
+  doctor:
+    cpso_number: '101160'
+    full_name: Bruno, Adrian   Joseph
+    registration_status: Active
+  address:
+    full_address: 451 Paxton Street, Port Perry, Ontario, L9L 1L9
+    street1: 451 Paxton Street
+    street2: null
+    city: Port Perry
+    province: Ontario
+    postal_code: L9L 1L9
+    phone: (905) 985-7321
+- input_postal_code: L6R 1
+  result_postal_code: M9V 1R8
+  doctor:
+    cpso_number: '66387'
+    full_name: Chaudhry, Ijaz Ahmed
+    registration_status: Active
+  address:
+    full_address: Etobicoke General Hospital, Emergency Department, 101 Humber College
+      Boulevard, Etobicoke, Ontario, M9V 1R8
+    street1: Etobicoke General Hospital
+    street2: Emergency Department
+    city: Etobicoke
+    province: Ontario
+    postal_code: M9V 1R8
+    phone: (416) 747-3400
+- input_postal_code: L6R 1
+  result_postal_code: L6P 2S4
+  doctor:
+    cpso_number: '85997'
+    full_name: Mohammed, Isa   Kolo
+    registration_status: Active
+  address:
+    full_address: 75 Braydon Blvd, United Urgent Care Clinic, Brampton, ON, L6P 2S4
+    street1: 75 Braydon Blvd
+    street2: United Urgent Care Clinic
+    city: Brampton
+    province: 'ON'
+    postal_code: L6P 2S4
+    phone: '9057947649'
+- input_postal_code: L6R 1
+  result_postal_code: L6P 2S4
+  doctor:
+    cpso_number: '105387'
+    full_name: Chahal, Kashif   Ali
+    registration_status: Active
+  address:
+    full_address: 75 Braydon Blvd, Brampton, ON, L6P 2S4
+    street1: 75 Braydon Blvd
+    street2: null
+    city: Brampton
+    province: 'ON'
+    postal_code: L6P 2S4
+    phone: 905-794-7649
+- input_postal_code: L6R 1
+  result_postal_code: M2K 2W2
+  doctor:
+    cpso_number: '97689'
+    full_name: Nadel, Maya
+    registration_status: Active
+  address:
+    full_address: 1110 Sheppard Avenue East, Suite 410, North York, Ontario, M2K 2W2
+    street1: 1110 Sheppard Avenue East
+    street2: Suite 410
+    city: North York
+    province: Ontario
+    postal_code: M2K 2W2
+    phone: (416)-285-3323
+- input_postal_code: L6R 1
+  result_postal_code: L3Y 3E4
+  doctor:
+    cpso_number: '109555'
+    full_name: Agarwal, Seema
+    registration_status: Active
+  address:
+    full_address: 17730 Leslie St, Newmarket, ON, L3Y 3E4
+    street1: 17730 Leslie St
+    street2: null
+    city: Newmarket
+    province: 'ON'
+    postal_code: L3Y 3E4
+    phone: '2898039119'
+- input_postal_code: L6R 1
+  result_postal_code: L9X 2X5
+  doctor:
+    cpso_number: '31825'
+    full_name: Tooming, Vello   Endel Tiit
+    registration_status: Active
+  address:
+    full_address: Milton District Hospital, 30 Derry Road East, Milton, Ontario, L9X
+      2X5
+    street1: Milton District Hospital
+    street2: 30 Derry Road East
+    city: Milton
+    province: Ontario
+    postal_code: L9X 2X5
+    phone: (905) 878-2383
+- input_postal_code: L6R 1
+  result_postal_code: L5N 6A3
+  doctor:
+    cpso_number: '117097'
+    full_name: Gentles, Simone   Georgia
+    registration_status: Active
+  address:
+    full_address: 6905 Millcreek Drive, Unit 3, Mississauga, Ontario, L5N 6A3
+    street1: 6905 Millcreek Drive
+    street2: Unit 3
+    city: Mississauga
+    province: Ontario
+    postal_code: L5N 6A3
+    phone: '2892339883'
+- input_postal_code: L6R 1
+  result_postal_code: L4Z 1V9
+  doctor:
+    cpso_number: '124130'
+    full_name: Nastasi, Kamilla
+    registration_status: Active
+  address:
+    full_address: 301-57 Village Centre Place, Mississauga, Ontario, L4Z 1V9
+    street1: 301-57 Village Centre Place
+    street2: null
+    city: Mississauga
+    province: Ontario
+    postal_code: L4Z 1V9
+    phone: 905-896-0899
+- input_postal_code: L6R 1
+  result_postal_code: L7A 2X6
+  doctor:
+    cpso_number: '76084'
+    full_name: Malam, Faiz   Gulamali
+    registration_status: Active
+  address:
+    full_address: 14-10088 McLaughlin Rd, Brampton, ON, L7A 2X6
+    street1: 14-10088 McLaughlin Rd
+    street2: null
+    city: Brampton
+    province: 'ON'
+    postal_code: L7A 2X6
+    phone: '4167412273'
+- input_postal_code: L6R 1
+  result_postal_code: L6Y 5Z6
+  doctor:
+    cpso_number: '97110'
+    full_name: Ahmad, Semina
+    registration_status: Active
+  address:
+    full_address: 55 Dusk Drive, Brampton, Ontario, L6Y 5Z6
+    street1: 55 Dusk Drive
+    street2: null
+    city: Brampton
+    province: Ontario
+    postal_code: L6Y 5Z6
+    phone: +1 (905) 451-9999
+- input_postal_code: L6R 1
+  result_postal_code: L4L 8Z2
+  doctor:
+    cpso_number: '78019'
+    full_name: Stratmann, Hanka Helena Elsbeth Antoinette
+    registration_status: Active
+  address:
+    full_address: suite 2, 4000 hwy 7, Vaughan, Ontario, L4L 8Z2
+    street1: suite 2
+    street2: 4000 hwy 7
+    city: Vaughan
+    province: Ontario
+    postal_code: L4L 8Z2
+    phone: (905) 851-3777
+- input_postal_code: L6R 1
+  result_postal_code: L4L 8Z2
+  doctor:
+    cpso_number: '95402'
+    full_name: Shahin, Ilan
+    registration_status: Active
+  address:
+    full_address: 4000 Highway 7 West, Vaughan, Ontario, L4L 8Z2
+    street1: 4000 Highway 7 West
+    street2: null
+    city: Vaughan
+    province: Ontario
+    postal_code: L4L 8Z2
+    phone: 905-851-3777
+- input_postal_code: L6R 1
+  result_postal_code: N2N 3G6
+  doctor:
+    cpso_number: '113784'
+    full_name: Mughal, Abdul   Shakoor
+    registration_status: Active
+  address:
+    full_address: 2-890, Glasgow Street, Kitchener, Ontario, N2N 3G6
+    street1: 2-890
+    street2: null
+    city: Kitchener
+    province: Ontario
+    postal_code: N2N 3G6
+    phone: 519-744-4293
+- input_postal_code: L6R 1
+  result_postal_code: L5M 2N1
+  doctor:
+    cpso_number: '140600'
+    full_name: David, Justin Paolo
+    registration_status: Active
+  address:
+    full_address: 2200 Eglinton Avenue West, Trillium Health Partners, Credit Valley
+      Hospital, Rehab and Complex Continuing Care, Mississauga, Ontario, L5M 2N1
+    street1: 2200 Eglinton Avenue West
+    street2: Trillium Health Partners
+    city: Mississauga
+    province: Ontario
+    postal_code: L5M 2N1
+    phone: '9058132200'
+- input_postal_code: L6R 2
+  result_postal_code: L6R 3J7
+  doctor:
+    cpso_number: '115153'
+    full_name: Oommen, Ria
+    registration_status: Active
+  address:
+    full_address: Brampton Civic Hospital, 2100 Bovaird Drive East, Brampton, Ontario,
+      L6R 3J7
+    street1: Brampton Civic Hospital
+    street2: 2100 Bovaird Drive East
+    city: Brampton
+    province: Ontario
+    postal_code: L6R 3J7
+    phone: (905) 494-2120
+- input_postal_code: L6R 2
+  result_postal_code: L6R 3J7
+  doctor:
+    cpso_number: '90566'
+    full_name: Abu-Abed, Mohamed   Ismail
+    registration_status: Active
+  address:
+    full_address: Brampton Civic Hospital, 2100 Bovaird Dr E, Brampton, Ontario, L6R
+      3J7
+    street1: Brampton Civic Hospital
+    street2: 2100 Bovaird Dr E
+    city: Brampton
+    province: Ontario
+    postal_code: L6R 3J7
+    phone: (905) 494-2120
+- input_postal_code: L6R 3B
+  result_postal_code: L6X 0B3
+  doctor:
+    cpso_number: '80488'
+    full_name: Ibrahim, Sarwat
+    registration_status: Active
+  address:
+    full_address: Dr Langer Family Medicine and Walk, IN Clinic, 9455 Mississauga
+      Road, Brampton, Ontario, L6X 0B3
+    street1: Dr Langer Family Medicine and Walk
+    street2: IN Clinic
+    city: Brampton
+    province: Ontario
+    postal_code: L6X 0B3
+    phone: 905 502 0605
+- input_postal_code: L6R 3J6
+  result_postal_code: M9V 1R8
+  doctor:
+    cpso_number: '75046'
+    full_name: Dang, Karen
+    registration_status: Active
+  address:
+    full_address: Etobicoke General Hospital - WOHS, Hospitalist Program, 101 Humber
+      College Boulevard, Etobicoke, Ontario, M9V 1R8
+    street1: Etobicoke General Hospital - WOHS
+    street2: Hospitalist Program
+    city: Etobicoke
+    province: Ontario
+    postal_code: M9V 1R8
+    phone: (416) 747-3400
+- input_postal_code: L6R 3J6
+  result_postal_code: L4T 4E3
+  doctor:
+    cpso_number: '102657'
+    full_name: Dhingra, Anurag
+    registration_status: Active
+  address:
+    full_address: 3530 Derry Rd E, 110-111, Mississauga, ON, L4T 4E3
+    street1: 3530 Derry Rd E
+    street2: null
+    city: Mississauga
+    province: 'ON'
+    postal_code: L4T 4E3
+    phone: '6479297277'
+- input_postal_code: L6R 3J6
+  result_postal_code: L6R 0X5
+  doctor:
+    cpso_number: '96711'
+    full_name: Saggar, Ruby
+    registration_status: Active
+  address:
+    full_address: unit 110-2 Dewside Drive, Brampton, Ontario, L6R 0X5
+    street1: unit 110-2 Dewside Drive
+    street2: null
+    city: Brampton
+    province: Ontario
+    postal_code: L6R 0X5
+    phone: '9057932444'
+- input_postal_code: L6R 3N
+  result_postal_code: L6R 0M5
+  doctor:
+    cpso_number: '82009'
+    full_name: Kumar, Naresh
+    registration_status: Active
+  address:
+    full_address: Healthline Medical Centre, Unit 3, 150 Yellow Avens Blvd, Brampton,
+      Ontario, L6R 0M5
+    street1: Healthline Medical Centre
+    street2: Unit 3
+    city: Brampton
+    province: Ontario
+    postal_code: L6R 0M5
+    phone: (905) 789-9100
+- input_postal_code: L6R 3P
+  result_postal_code: L7N 3G7
+  doctor:
+    cpso_number: '71140'
+    full_name: Elliott, Wade   Charles
+    registration_status: Active
+  address:
+    full_address: ISM Rehab, Suite 506, 3027 Harvester Road, Burlington, Ontario,
+      L7N 3G7
+    street1: ISM Rehab
+    street2: Suite 506
+    city: Burlington
+    province: Ontario
+    postal_code: L7N 3G7
+    phone: 289-266-3036
+- input_postal_code: L6R 3S
+  result_postal_code: L6P 2S4
+  doctor:
+    cpso_number: '105387'
+    full_name: Chahal, Kashif   Ali
+    registration_status: Active
+  address:
+    full_address: 75 Braydon Blvd, Brampton, ON, L6P 2S4
+    street1: 75 Braydon Blvd
+    street2: null
+    city: Brampton
+    province: 'ON'
+    postal_code: L6P 2S4
+    phone: 905-794-7649
+- input_postal_code: L6R 3S
+  result_postal_code: L6M 0L8
+  doctor:
+    cpso_number: '114858'
+    full_name: Saforo-Appiah, Robert
+    registration_status: Active
+  address:
+    full_address: 3001 Hospital Gate, Oakville Trafalgar Memorial Hospital, Department
+      of Emergency Medicine, Oakville, Ontario, L6M 0L8
+    street1: 3001 Hospital Gate
+    street2: Oakville Trafalgar Memorial Hospital
+    city: Oakville
+    province: Ontario
+    postal_code: L6M 0L8
+    phone: '9058452571'
+- input_postal_code: L6R 3S
+  result_postal_code: M2N 5P6
+  doctor:
+    cpso_number: '119643'
+    full_name: Arora, Esha
+    registration_status: Active
+  address:
+    full_address: 5292 Yonge Street, HealthOne Medical Centre, Toronto, Ontario, M2N
+      5P6
+    street1: 5292 Yonge Street
+    street2: HealthOne Medical Centre
+    city: Toronto
+    province: Ontario
+    postal_code: M2N 5P6
+    phone: 416-223-6666
+- input_postal_code: L6R 3S
+  result_postal_code: L6Y 5Z6
+  doctor:
+    cpso_number: '132235'
+    full_name: Moghrabi, Kamal
+    registration_status: Active
+  address:
+    full_address: 1-55 Dusk Dr, Brampton, ON, L6Y 5Z6
+    street1: 1-55 Dusk Dr
+    street2: null
+    city: Brampton
+    province: 'ON'
+    postal_code: L6Y 5Z6
+    phone: (905) 451-9999
+- input_postal_code: L6R 3T
+  result_postal_code: L7A 3E5
+  doctor:
+    cpso_number: '123462'
+    full_name: Minhas, Gurman
+    registration_status: Active
+  address:
+    full_address: 4-10725 McLaughlin Road, Brampton, Ontario, L7A 3E5
+    street1: 4-10725 McLaughlin Road
+    street2: null
+    city: Brampton
+    province: Ontario
+    postal_code: L7A 3E5
+    phone: 905-488-0581
+- input_postal_code: L6R 3X
+  result_postal_code: L6R 0C1
+  doctor:
+    cpso_number: '99178'
+    full_name: Alshahabi, Qussay
+    registration_status: Active
+  address:
+    full_address: 10970 Bramalea Road, B&C Urgent Care &Walk in Clinic, Brampton,
+      Ontario, L6R 0C1
+    street1: 10970 Bramalea Road
+    street2: B&C Urgent Care &Walk in Clinic
+    city: Brampton
+    province: Ontario
+    postal_code: L6R 0C1
+    phone: 289-569-0124
+- input_postal_code: L6W 0
+  result_postal_code: L4J 0A2
+  doctor:
+    cpso_number: '66318'
+    full_name: Grief, Eric   Michael
+    registration_status: Active
+  address:
+    full_address: 8707 Dufferin St, Thornhill, ON, L4J 0A2
+    street1: 8707 Dufferin St
+    street2: null
+    city: Thornhill
+    province: 'ON'
+    postal_code: L4J 0A2
+    phone: '9057643300'
+- input_postal_code: L6W 0
+  result_postal_code: L5B 0E4
+  doctor:
+    cpso_number: '146166'
+    full_name: Siraj, Namrah
+    registration_status: Active
+  address:
+    full_address: C106-3885 Duke of York Blvd, Excellent Care Medical Centre, Mississauga,
+      ON, L5B 0E4
+    street1: C106-3885 Duke of York Blvd
+    street2: Excellent Care Medical Centre
+    city: Mississauga
+    province: 'ON'
+    postal_code: L5B 0E4
+    phone: 905-270-3885
+- input_postal_code: L6W 2E
+  result_postal_code: M9V 5G5
+  doctor:
+    cpso_number: '58046'
+    full_name: Poon, Kwok   Cheung Pat
+    registration_status: Active
+  address:
+    full_address: 1525 Albion Road, DR. POON'S METABOLIC DIET CLINIC - Etobicoke,
+      UNIT 202, 1525 Albion Road, Toronto, Ontario, M9V 5G5
+    street1: 1525 Albion Road
+    street2: DR. POON'S METABOLIC DIET CLINIC - Etobicoke
+    city: Toronto
+    province: Ontario
+    postal_code: M9V 5G5
+    phone: '4167480846'
+- input_postal_code: L6W 2X
+  result_postal_code: L6S 0C1
+  doctor:
+    cpso_number: '71423'
+    full_name: Allain, Michelle   Doris
+    registration_status: Active
+  address:
+    full_address: MyHealth Centre - Brampton Chrysler, 28-470 Chrysler Dr, Brampton,
+      ON, L6S 0C1
+    street1: MyHealth Centre - Brampton Chrysler
+    street2: 28-470 Chrysler Dr
+    city: Brampton
+    province: 'ON'
+    postal_code: L6S 0C1
+    phone: 1-833-904-4575
+- input_postal_code: L6W 4
+  result_postal_code: L6S 0C9
+  doctor:
+    cpso_number: '106410'
+    full_name: Bains, Ramandeep
+    registration_status: Active
+  address:
+    full_address: Brameast Family Physicians, 38-2130 N Park Dr, Brampton, Ontario,
+      L6S 0C9
+    street1: Brameast Family Physicians
+    street2: 38-2130 N Park Dr
+    city: Brampton
+    province: Ontario
+    postal_code: L6S 0C9
+    phone: null
+- input_postal_code: L6W 4
+  result_postal_code: L5B 1J2
+  doctor:
+    cpso_number: '79843'
+    full_name: Jivanji, Nissreen
+    registration_status: Active
+  address:
+    full_address: 250 Dundas Street West, Mississauga, Ontario, L5B 1J2
+    street1: 250 Dundas Street West
+    street2: null
+    city: Mississauga
+    province: Ontario
+    postal_code: L5B 1J2
+    phone: 905-275-2273
+- input_postal_code: L6W 4
+  result_postal_code: M8Z 1S3
+  doctor:
+    cpso_number: '120116'
+    full_name: Mikail, Kirollos   Tharwat Youssef
+    registration_status: Active
+  address:
+    full_address: Dr. OK Medical Clinic, 1278 The Queensway, Etobicoke, Ontario, M8Z
+      1S3
+    street1: Dr. OK Medical Clinic
+    street2: 1278 The Queensway
+    city: Etobicoke
+    province: Ontario
+    postal_code: M8Z 1S3
+    phone: 416-848 9795
+- input_postal_code: L6W 4
+  result_postal_code: L4N 6M2
+  doctor:
+    cpso_number: '135273'
+    full_name: Rhéaume, Caroline
+    registration_status: Active
+  address:
+    full_address: 102-480 Huronia Road, Huronia Urgent Care Clinic, Emergency, Barrie,
+      Ontario, L4N 6M2
+    street1: 102-480 Huronia Road
+    street2: Huronia Urgent Care Clinic
+    city: Barrie
+    province: Ontario
+    postal_code: L4N 6M2
+    phone: '7057920933'
+- input_postal_code: L6P 0
+  result_postal_code: L6Y 0N2
+  doctor:
+    cpso_number: '82070'
+    full_name: Cheema, Waqar   Mustafa
+    registration_status: Active
+  address:
+    full_address: Unit 3 - 511 Ray Lawson Blvd, Brampton, Ontario, L6Y 0N2
+    street1: Unit 3 - 511 Ray Lawson Blvd
+    street2: null
+    city: Brampton
+    province: Ontario
+    postal_code: L6Y 0N2
+    phone: '9054507427'
+- input_postal_code: L6P 0
+  result_postal_code: L6X 0B3
+  doctor:
+    cpso_number: '80488'
+    full_name: Ibrahim, Sarwat
+    registration_status: Active
+  address:
+    full_address: Dr Langer Family Medicine and Walk, IN Clinic, 9455 Mississauga
+      Road, Brampton, Ontario, L6X 0B3
+    street1: Dr Langer Family Medicine and Walk
+    street2: IN Clinic
+    city: Brampton
+    province: Ontario
+    postal_code: L6X 0B3
+    phone: 905 502 0605
+- input_postal_code: L6P 0
+  result_postal_code: L6Y 5L8
+  doctor:
+    cpso_number: '108247'
+    full_name: Cheema, Sabha   Shoukat
+    registration_status: Active
+  address:
+    full_address: Unit 10, 17 Ray Lawson Blvd, Brampton, Ontario, L6Y 5L8
+    street1: Unit 10
+    street2: 17 Ray Lawson Blvd
+    city: Brampton
+    province: Ontario
+    postal_code: L6Y 5L8
+    phone: (905) 497-7475
+- input_postal_code: L6P 1
+  result_postal_code: L5B 0A1
+  doctor:
+    cpso_number: '272306'
+    full_name: Chowdhry, Manik Bir Singh
+    registration_status: Active
+  address:
+    full_address: 4175 Confederation Parkway, Unit 1 and 2, Mississauga, Ontario,
+      L5B 0A1
+    street1: 4175 Confederation Parkway
+    street2: null
+    city: Mississauga
+    province: Ontario
+    postal_code: L5B 0A1
+    phone: 905-848-4880
+- input_postal_code: L6P 2
+  result_postal_code: M9W 3W9
+  doctor:
+    cpso_number: '140819'
+    full_name: Gupta, Kaaran Kumar
+    registration_status: Active
+  address:
+    full_address: 2304 Islington Avenue, Toronto, Ontario, M9W 3W9
+    street1: 2304 Islington Avenue
+    street2: null
+    city: Toronto
+    province: Ontario
+    postal_code: M9W 3W9
+    phone: '6473480588'
+- input_postal_code: L6P 2
+  result_postal_code: L6Y 5Z6
+  doctor:
+    cpso_number: '85839'
+    full_name: Khoja, Murtuza   Hyder
+    registration_status: Active
+  address:
+    full_address: Pulse Urgent Care (Dusk), 55 Dusk Drive, Unit 1, Brampton, Ontario,
+      L6Y 5Z6
+    street1: Pulse Urgent Care (Dusk)
+    street2: 55 Dusk Drive
+    city: Brampton
+    province: Ontario
+    postal_code: L6Y 5Z6
+    phone: (905) 451-9999
+- input_postal_code: L6P 2
+  result_postal_code: L7A 3Y6
+  doctor:
+    cpso_number: '100549'
+    full_name: Sharma, Vinay
+    registration_status: Active
+  address:
+    full_address: Storybrook Medical Clinic, 611 Wanless Dr, unit 1, Brampton, Ontario,
+      L7A 3Y6
+    street1: Storybrook Medical Clinic
+    street2: 611 Wanless Dr, unit 1
+    city: Brampton
+    province: Ontario
+    postal_code: L7A 3Y6
+    phone: 905-840-2008
+- input_postal_code: L6P 2
+  result_postal_code: L6Y 5Z6
+  doctor:
+    cpso_number: '90242'
+    full_name: Syed, Ikramuddin
+    registration_status: Active
+  address:
+    full_address: 55 Dusk Drive, Brampton, Ontario, L6Y 5Z6
+    street1: 55 Dusk Drive
+    street2: null
+    city: Brampton
+    province: Ontario
+    postal_code: L6Y 5Z6
+    phone: 905 451 9999
+- input_postal_code: L6P 2
+  result_postal_code: M3N 2J2
+  doctor:
+    cpso_number: '51623'
+    full_name: Shah, Bharatkumar   Kanaiyalal
+    registration_status: Active
+  address:
+    full_address: 2780 Jane Street, Suite 206, Downsview, Ontario, M3N 2J2
+    street1: 2780 Jane Street
+    street2: Suite 206
+    city: Downsview
+    province: Ontario
+    postal_code: M3N 2J2
+    phone: (416) 743-3419
+- input_postal_code: L6P 2
+  result_postal_code: M3N 2J2
+  doctor:
+    cpso_number: '33758'
+    full_name: Shah, Sheila
+    registration_status: Active
+  address:
+    full_address: 2780 Jane Street, Suite 206, Downsview, Ontario, M3N 2J2
+    street1: 2780 Jane Street
+    street2: Suite 206
+    city: Downsview
+    province: Ontario
+    postal_code: M3N 2J2
+    phone: (416) 743-3419
+- input_postal_code: L6P 2
+  result_postal_code: M9V 5G4
+  doctor:
+    cpso_number: '107970'
+    full_name: Nanua, Pardip   Singh
+    registration_status: Active
+  address:
+    full_address: Etobicoke Walk-In Clinic, Suite 106B, 100 Humber College Boulevard,
+      Etobicoke, Ontario, M9V 5G4
+    street1: Etobicoke Walk-In Clinic
+    street2: Suite 106B
+    city: Etobicoke
+    province: Ontario
+    postal_code: M9V 5G4
+    phone: (416) 742-9449
+- input_postal_code: L6P 2
+  result_postal_code: M3L 1B2
+  doctor:
+    cpso_number: '131477'
+    full_name: Shah, Monica
+    registration_status: Active
+  address:
+    full_address: 1700 Wilson Avenue, Sheridan Clinic, Toronto, Ontario, M3L 1B2
+    street1: 1700 Wilson Avenue
+    street2: Sheridan Clinic
+    city: Toronto
+    province: Ontario
+    postal_code: M3L 1B2
+    phone: '4162449178'
+- input_postal_code: L6P 3
+  result_postal_code: M9V 5G5
+  doctor:
+    cpso_number: '86968'
+    full_name: Sehravat, Narinder Singh
+    registration_status: Active
+  address:
+    full_address: Suite 305, 1525 Albion Road, Etobicoke, Ontario, M9V 5G5
+    street1: Suite 305
+    street2: 1525 Albion Road
+    city: Etobicoke
+    province: Ontario
+    postal_code: M9V 5G5
+    phone: (416) 740-2274
+- input_postal_code: L6P 4
+  result_postal_code: L7A 4X3
+  doctor:
+    cpso_number: '135415'
+    full_name: Sharma, Mayank
+    registration_status: Active
+  address:
+    full_address: 11210 Creditview Rd, Brampton, ON, L7A 4X3
+    street1: 11210 Creditview Rd
+    street2: null
+    city: Brampton
+    province: 'ON'
+    postal_code: L7A 4X3
+    phone: null
+- input_postal_code: L6P 4
+  result_postal_code: L6W 3E1
+  doctor:
+    cpso_number: '120468'
+    full_name: Mann, Garry
+    registration_status: Active
+  address:
+    full_address: 2 Kennedy Rd South Unit 4A, Brampton, Ontario, L6W 3E1
+    street1: 2 Kennedy Rd South Unit 4A
+    street2: null
+    city: Brampton
+    province: Ontario
+    postal_code: L6W 3E1
+    phone: 905-459-4385
+- input_postal_code: L6P 4
+  result_postal_code: L7C 4C4
+  doctor:
+    cpso_number: '102009'
+    full_name: Muhammad, Afzal
+    registration_status: Active
+  address:
+    full_address: 12560 Kennedy Road, unit 2, Caledon, Ontario, L7C 4C4
+    street1: 12560 Kennedy Road
+    street2: null
+    city: Caledon
+    province: Ontario
+    postal_code: L7C 4C4
+    phone: '9054884899'
+- input_postal_code: L6P 4
+  result_postal_code: L7A 4X3
+  doctor:
+    cpso_number: '119899'
+    full_name: Sran, Gopal   Singh
+    registration_status: Active
+  address:
+    full_address: Vital Urgent Care, D - 11210 Creditview Rd, Brampton, Ontario, L7A
+      4X3
+    street1: Vital Urgent Care
+    street2: D - 11210 Creditview Rd
+    city: Brampton
+    province: Ontario
+    postal_code: L7A 4X3
+    phone: '9054954500'
+- input_postal_code: L6P 4
+  result_postal_code: L6P 3L1
+  doctor:
+    cpso_number: '115616'
+    full_name: Gandhi, Rushi   Mayurkumar
+    registration_status: Active
+  address:
+    full_address: 109-275 Gardenbrooke Trail, Gardenbrook Medical Centre, Brampton,
+      Ontario, L6P 3L1
+    street1: 109-275 Gardenbrooke Trail
+    street2: Gardenbrook Medical Centre
+    city: Brampton
+    province: Ontario
+    postal_code: L6P 3L1
+    phone: (905) 913-0088
+- input_postal_code: L6P 4
+  result_postal_code: L7A 4X3
+  doctor:
+    cpso_number: '119980'
+    full_name: Mohan, Sumeet
+    registration_status: Active
+  address:
+    full_address: 11210 Creditview Rd, Unit D, Brampton, ON, L7A 4X3
+    street1: 11210 Creditview Rd
+    street2: Unit D
+    city: Brampton
+    province: 'ON'
+    postal_code: L7A 4X3
+    phone: 905) 257-6712
+- input_postal_code: L6P 4
+  result_postal_code: L7A 3W3
+  doctor:
+    cpso_number: '108078'
+    full_name: Mohan, Rajiv
+    registration_status: Active
+  address:
+    full_address: 103-695 Remembrance Road, Brampton, Ontario, L7A 3W3
+    street1: 103-695 Remembrance Road
+    street2: null
+    city: Brampton
+    province: Ontario
+    postal_code: L7A 3W3
+    phone: '9058469090'
+- input_postal_code: L6P 4
+  result_postal_code: L3P 3J3
+  doctor:
+    cpso_number: '151668'
+    full_name: Offiong, Harrison Eyamba
+    registration_status: Active
+  address:
+    full_address: unit 1-9441 Markham Road, FlexMD Allied Health Clinic, Markham,
+      Ontario, L3P 3J3
+    street1: unit 1-9441 Markham Road
+    street2: FlexMD Allied Health Clinic
     city: Markham
     province: Ontario
-    postal_code: L3P 7P3
-    phone: 905-472-7606
-- input_postal_code: L4A 3
+    postal_code: L3P 3J3
+    phone: '9052051558'
+- input_postal_code: L6P 4
+  result_postal_code: L4L 1A6
+  doctor:
+    cpso_number: '273379'
+    full_name: Abbas, Muhammad Waqar
+    registration_status: Active
+  address:
+    full_address: 9000 Weston Road, Weston Down Pharmacy and Walk in, Vaughan Medical
+      Centre, Woodbridge, Ontario, L4L 1A6
+    street1: 9000 Weston Road
+    street2: Weston Down Pharmacy and Walk in
+    city: Woodbridge
+    province: Ontario
+    postal_code: L4L 1A6
+    phone: 905-605-7070
+- input_postal_code: L6Y 0
+  result_postal_code: L5B 0G7
+  doctor:
+    cpso_number: '122605'
+    full_name: Mekhail, Renih Takla Fanous
+    registration_status: Active
+  address:
+    full_address: 4188 Living Arts Drive, 4188 Living Arts Drive, Mississauga, Ontario,
+      L5B 0G7
+    street1: 4188 Living Arts Drive
+    street2: 4188 Living Arts Drive
+    city: Mississauga
+    province: Ontario
+    postal_code: L5B 0G7
+    phone: 905 808 3002
+- input_postal_code: L6Y 0
+  result_postal_code: L9T 1P5
+  doctor:
+    cpso_number: '95227'
+    full_name: Naguib Khela, Sherine   Amin Sobhy
+    registration_status: Active
+  address:
+    full_address: 310 Main Street East, Suite 108, Milton, Ontario, L9T 1P5
+    street1: 310 Main Street East
+    street2: Suite 108
+    city: Milton
+    province: Ontario
+    postal_code: L9T 1P5
+    phone: 905-878-8840
+- input_postal_code: L6Y 0
+  result_postal_code: L6X 0T9
+  doctor:
+    cpso_number: '94618'
+    full_name: Chakraborty, Krishna
+    registration_status: Active
+  address:
+    full_address: 811 Bovaird Drive West, Brampton, Ontario, L6X 0T9
+    street1: 811 Bovaird Drive West
+    street2: null
+    city: Brampton
+    province: Ontario
+    postal_code: L6X 0T9
+    phone: 905-455-5252
+- input_postal_code: L6Y 0
+  result_postal_code: L6K 1E4
+  doctor:
+    cpso_number: '105969'
+    full_name: Nesseem, Iman   William Bekheet
+    registration_status: Active
+  address:
+    full_address: Oak Lake Medical Centre, 146 Lakeshore Rd W, A3, Oakville, ON.,
+      Oakville, Ontario, L6K 1E4
+    street1: Oak Lake Medical Centre
+    street2: 146 Lakeshore Rd W, A3
+    city: Oakville
+    province: Ontario
+    postal_code: L6K 1E4
+    phone: (289) 837 4747
+- input_postal_code: L6Y 0
+  result_postal_code: L4G 4B7
+  doctor:
+    cpso_number: '104699'
+    full_name: Diwan, Maheen
+    registration_status: Active
+  address:
+    full_address: 35 Sunday Drive, Unit 204, Aurora Sports Medicine Professionals,
+      Aurora, Ontario, L4G 4B7
+    street1: 35 Sunday Drive
+    street2: Unit 204
+    city: Aurora
+    province: Ontario
+    postal_code: L4G 4B7
+    phone: 905-503-5022
+- input_postal_code: L6Y 1
+  result_postal_code: P1B 8G5
+  doctor:
+    cpso_number: '93211'
+    full_name: Lalonde, Benjamin   David
+    registration_status: Active
+  address:
+    full_address: 40A Couchie Industrial Rd, North Bay, Ontario, P1B 8G5
+    street1: 40A Couchie Industrial Rd
+    street2: null
+    city: North Bay
+    province: Ontario
+    postal_code: P1B 8G5
+    phone: 705-495-1580
+- input_postal_code: L6Y 1
+  result_postal_code: L6W 3X4
+  doctor:
+    cpso_number: '62443'
+    full_name: Abraham, Gary   Charles
+    registration_status: Active
+  address:
+    full_address: Suite 101, 157 Queen Street East, Brampton, Ontario, L6W 3X4
+    street1: Suite 101
+    street2: 157 Queen Street East
+    city: Brampton
+    province: Ontario
+    postal_code: L6W 3X4
+    phone: (905) 453-1340
+- input_postal_code: L6Y 1
+  result_postal_code: L4N 2C4
+  doctor:
+    cpso_number: '73565'
+    full_name: Taylor, Brian   Vance
+    registration_status: Active
+  address:
+    full_address: Road to Recovery - Barrie, Unit 3, 7 Anne Street South, Barrie,
+      Ontario, L4N 2C4
+    street1: Road to Recovery - Barrie
+    street2: Unit 3
+    city: Barrie
+    province: Ontario
+    postal_code: L4N 2C4
+    phone: (705) 719-7333
+- input_postal_code: L6Y 1
+  result_postal_code: L1V 1A3
+  doctor:
+    cpso_number: '132328'
+    full_name: Dehmassi, Rebecca
+    registration_status: Active
+  address:
+    full_address: '375 Kingston Road, Unit #6, Pickering, Ontario, L1V 1A3'
+    street1: 375 Kingston Road
+    street2: 'Unit #6'
+    city: Pickering
+    province: Ontario
+    postal_code: L1V 1A3
+    phone: 905-509-6888
+- input_postal_code: L6Y 4
+  result_postal_code: L6T 4S5
+  doctor:
+    cpso_number: '52535'
+    full_name: Li, Shao-Jin Gene
+    registration_status: Active
+  address:
+    full_address: Suite 509, 18 Kensington Road, Brampton, Ontario, L6T 4S5
+    street1: Suite 509
+    street2: 18 Kensington Road
+    city: Brampton
+    province: Ontario
+    postal_code: L6T 4S5
+    phone: (905) 799-9875
+- input_postal_code: L6Y 4
+  result_postal_code: L5B 0G4
+  doctor:
+    cpso_number: '72573'
+    full_name: Razvi, Nayyar Kamal
+    registration_status: Active
+  address:
+    full_address: 4062 Confederation Pky, Mississauga, ON, L5B 0G4
+    street1: 4062 Confederation Pky
+    street2: null
+    city: Mississauga
+    province: 'ON'
+    postal_code: L5B 0G4
+    phone: 647 722 2273
+- input_postal_code: L6Y 4
+  result_postal_code: L5W 1X1
+  doctor:
+    cpso_number: '80589'
+    full_name: Metrie, Mamdouh   Anwar Hanna
+    registration_status: Active
+  address:
+    full_address: Twain Medical Clinic, Suite 14, 733 Twain Avenue, Mississauga, Ontario,
+      L5W 1X1
+    street1: Twain Medical Clinic
+    street2: Suite 14
+    city: Mississauga
+    province: Ontario
+    postal_code: L5W 1X1
+    phone: (905) 670-8209
+- input_postal_code: L6Y 5
+  result_postal_code: L6W 0A7
+  doctor:
+    cpso_number: '135883'
+    full_name: Makinde, Toluwalope Akinade
+    registration_status: Active
+  address:
+    full_address: 15 Resolution Drive, Brampton, Ontario, L6W 0A7
+    street1: 15 Resolution Drive
+    street2: null
+    city: Brampton
+    province: Ontario
+    postal_code: L6W 0A7
+    phone: '2892985474'
+- input_postal_code: L6Y 5
+  result_postal_code: M9V 1R8
+  doctor:
+    cpso_number: '140992'
+    full_name: Saggar, Jasdeep Kaur
+    registration_status: Active
+  address:
+    full_address: 101 Humber College Boulevard, Toronto, Ontario, M9V 1R8
+    street1: 101 Humber College Boulevard
+    street2: null
+    city: Toronto
+    province: Ontario
+    postal_code: M9V 1R8
+    phone: 416-494-2120
+- input_postal_code: L6Y 5
+  result_postal_code: L6R 3S9
+  doctor:
+    cpso_number: '145650'
+    full_name: Tayyiba, Mobushra
+    registration_status: Active
+  address:
+    full_address: 4-11755 Bramalea Rd, Pulse Urgent Care Centre, Brampton, ON, L6R
+      3S9
+    street1: 4-11755 Bramalea Rd
+    street2: Pulse Urgent Care Centre
+    city: Brampton
+    province: 'ON'
+    postal_code: L6R 3S9
+    phone: 289-801-8999
+- input_postal_code: L6Y 5
+  result_postal_code: M9W 3W9
+  doctor:
+    cpso_number: '140819'
+    full_name: Gupta, Kaaran Kumar
+    registration_status: Active
+  address:
+    full_address: 2304 Islington Avenue, Toronto, Ontario, M9W 3W9
+    street1: 2304 Islington Avenue
+    street2: null
+    city: Toronto
+    province: Ontario
+    postal_code: M9W 3W9
+    phone: '6473480588'
+- input_postal_code: L6Y 5
+  result_postal_code: L4W 1M6
+  doctor:
+    cpso_number: '62491'
+    full_name: Steffens, Nelson   Joseph
+    registration_status: Active
+  address:
+    full_address: 4288 Dixie Road, Mississauga, Ontario, L4W 1M6
+    street1: 4288 Dixie Road
+    street2: null
+    city: Mississauga
+    province: Ontario
+    postal_code: L4W 1M6
+    phone: (905) 206-0512
+- input_postal_code: L6Y 5
+  result_postal_code: L6P 0B1
+  doctor:
+    cpso_number: '102990'
+    full_name: Iqbal, Umair   Mohammad
+    registration_status: Active
+  address:
+    full_address: 8730 The Gore Road, Brampton, Ontario, L6P 0B1
+    street1: 8730 The Gore Road
+    street2: null
+    city: Brampton
+    province: Ontario
+    postal_code: L6P 0B1
+    phone: (647) 557-2232
+- input_postal_code: L6Y 5
+  result_postal_code: L6M 4J2
+  doctor:
+    cpso_number: '95303'
+    full_name: Bajwa, Sameea   Fawad
+    registration_status: Active
+  address:
+    full_address: 540 - 2525 Old Bronte Rd, Oakville, ON, L6M 4J2
+    street1: 540 - 2525 Old Bronte Rd
+    street2: null
+    city: Oakville
+    province: 'ON'
+    postal_code: L6M 4J2
+    phone: 905-827-9865
+- input_postal_code: L6Y 5
+  result_postal_code: L6Y 0N2
+  doctor:
+    cpso_number: '82070'
+    full_name: Cheema, Waqar   Mustafa
+    registration_status: Active
+  address:
+    full_address: Unit 3 - 511 Ray Lawson Blvd, Brampton, Ontario, L6Y 0N2
+    street1: Unit 3 - 511 Ray Lawson Blvd
+    street2: null
+    city: Brampton
+    province: Ontario
+    postal_code: L6Y 0N2
+    phone: '9054507427'
+- input_postal_code: L6Y 5
+  result_postal_code: L5B 1H1
+  doctor:
+    cpso_number: '115879'
+    full_name: Krishnan, Keeth
+    registration_status: Active
+  address:
+    full_address: 95 King Street West, Mississauga, Ontario, L5B 1H1
+    street1: 95 King Street West
+    street2: null
+    city: Mississauga
+    province: Ontario
+    postal_code: L5B 1H1
+    phone: (905)848-2284
+- input_postal_code: L6Y 5
+  result_postal_code: L5V 2P3
+  doctor:
+    cpso_number: '64093'
+    full_name: Sequeira, Errol   Joseph
+    registration_status: Active
+  address:
+    full_address: Streetsville Medical Centre, 5425 Creditview Road, Unit 8, Mississauga,
+      Ontario, L5V 2P3
+    street1: Streetsville Medical Centre
+    street2: 5425 Creditview Road
+    city: Mississauga
+    province: Ontario
+    postal_code: L5V 2P3
+    phone: (905) 826-1164
+- input_postal_code: L6Y 5
+  result_postal_code: L8S 4K1
+  doctor:
+    cpso_number: '93126'
+    full_name: Thind, Harpreet   Kaur
+    registration_status: Active
+  address:
+    full_address: Student Wellness Centre, McMaster University, PGCLL 210/201-1280
+      Main Street West, Hamilton, Ontario, L8S 4K1
+    street1: Student Wellness Centre
+    street2: McMaster University
+    city: Hamilton
+    province: Ontario
+    postal_code: L8S 4K1
+    phone: 905-525-9140
+- input_postal_code: L6Y 5
+  result_postal_code: L6B 0P2
+  doctor:
+    cpso_number: '103402'
+    full_name: Sharifian, Babak
+    registration_status: Active
+  address:
+    full_address: 110 Copper Creek Drive, Unit 100, Markham Stouffville Urgent Care
+      Centre, Markham, Ontario, L6B 0P2
+    street1: 110 Copper Creek Drive
+    street2: Unit 100
+    city: Markham
+    province: Ontario
+    postal_code: L6B 0P2
+    phone: (905) 472-8911
+- input_postal_code: L6Y 5
+  result_postal_code: L6V 1P8
+  doctor:
+    cpso_number: '95934'
+    full_name: Thind, Amritpal   Singh
+    registration_status: Active
+  address:
+    full_address: 366 Main Street North, Suite 201, Brampton, Ontario, L6V 1P8
+    street1: 366 Main Street North
+    street2: Suite 201
+    city: Brampton
+    province: Ontario
+    postal_code: L6V 1P8
+    phone: 905 455 1455
+- input_postal_code: L6Y 5
+  result_postal_code: L5N 8C8
+  doctor:
+    cpso_number: '105491'
+    full_name: Ekladious, Sameh   Saad Magharious
+    registration_status: Active
+  address:
+    full_address: Lisgar Woods Medical Centre, Unit B2, 6970, Lisgar Drive, Mississauga,
+      Ontario, L5N 8C8
+    street1: Lisgar Woods Medical Centre
+    street2: Unit B2
+    city: Mississauga
+    province: Ontario
+    postal_code: L5N 8C8
+    phone: 905-824-4441
+- input_postal_code: L6Y 5
+  result_postal_code: L4X 2V3
+  doctor:
+    cpso_number: '117532'
+    full_name: Jalayer, Hossein
+    registration_status: Active
+  address:
+    full_address: 4A-2200 Dundas Street East, Dundas427 Medical Centre, Mississauga,
+      Ontario, L4X 2V3
+    street1: 4A-2200 Dundas Street East
+    street2: Dundas427 Medical Centre
+    city: Mississauga
+    province: Ontario
+    postal_code: L4X 2V3
+    phone: 905-232-0720
+- input_postal_code: L6Y 5
+  result_postal_code: L7A 5M3
+  doctor:
+    cpso_number: '128113'
+    full_name: Virk, Gurpinderjit Singh
+    registration_status: Active
+  address:
+    full_address: 550 Veterans Drive, Veterans Medical Clinic, Unit 3, Brampton, Ontario,
+      L7A 5M3
+    street1: 550 Veterans Drive
+    street2: Veterans Medical Clinic
+    city: Brampton
+    province: Ontario
+    postal_code: L7A 5M3
+    phone: 905-843-0056
+- input_postal_code: L6Y 5
+  result_postal_code: L6R 3S9
+  doctor:
+    cpso_number: '149172'
+    full_name: Awan, Ramsha Mahum
+    registration_status: Active
+  address:
+    full_address: unit 4-11755 Bramalea Road, Brampton, Ontario, L6R 3S9
+    street1: unit 4-11755 Bramalea Road
+    street2: null
+    city: Brampton
+    province: Ontario
+    postal_code: L6R 3S9
+    phone: '2898018999'
+- input_postal_code: L6Y 5
+  result_postal_code: L6R 3S9
+  doctor:
+    cpso_number: '156255'
+    full_name: Amna, Farkhanda
+    registration_status: Active
+  address:
+    full_address: 11755 Bramalea Road, Brampton, Ontario, L6R 3S9
+    street1: 11755 Bramalea Road
+    street2: null
+    city: Brampton
+    province: Ontario
+    postal_code: L6R 3S9
+    phone: '4373248951'
+- input_postal_code: L6Y 6
+  result_postal_code: M1P 4X4
+  doctor:
+    cpso_number: '97865'
+    full_name: Al-Attar, Salam   Akram Ali
+    registration_status: Active
+  address:
+    full_address: 109A-55 Town Centre Court, Town Care Medical Clinic, Toronto, Ontario,
+      M1P 4X4
+    street1: 109A-55 Town Centre Court
+    street2: Town Care Medical Clinic
+    city: Toronto
+    province: Ontario
+    postal_code: M1P 4X4
+    phone: (416) 792-2654
+- input_postal_code: L6Y 6
+  result_postal_code: L2T 2K9
+  doctor:
+    cpso_number: '122589'
+    full_name: Maan, Rajinder   Singh
+    registration_status: Active
+  address:
+    full_address: MedCare Clinics @ Walmart Pen Centre, 221 Glendale Avenue (inside
+      Walmart), St. Catharines, ON, L2T 2K9
+    street1: MedCare Clinics @ Walmart Pen Centre
+    street2: 221 Glendale Avenue (inside Walmart)
+    city: St. Catharines
+    province: 'ON'
+    postal_code: L2T 2K9
+    phone: 905-687-4252
+- input_postal_code: L6Y 6
+  result_postal_code: L6W 3E1
+  doctor:
+    cpso_number: '83893'
+    full_name: Chowdry, Seema
+    registration_status: Active
+  address:
+    full_address: 2 Kennedy Rd S, 4A, Brampton, ON, L6W 3E1
+    street1: 2 Kennedy Rd S
+    street2: 4A
+    city: Brampton
+    province: 'ON'
+    postal_code: L6W 3E1
+    phone: 905 459 4385
+- input_postal_code: L6Y 6
+  result_postal_code: L6R 3S9
+  doctor:
+    cpso_number: '96927'
+    full_name: Richards, Enoka   Geraldine
+    registration_status: Active
+  address:
+    full_address: 5085 Mayfield Road, MedCare Clinics, Brampton, Ontario, L6R 3S9
+    street1: 5085 Mayfield Road
+    street2: MedCare Clinics
+    city: Brampton
+    province: Ontario
+    postal_code: L6R 3S9
+    phone: 905-793-3222
+- input_postal_code: L6Y 6
+  result_postal_code: L6X 0Z9
+  doctor:
+    cpso_number: '77270'
+    full_name: Shilash, Basil   Muhson Alwan
+    registration_status: Active
+  address:
+    full_address: Suite 200, 60 Gillingham Drive, Brampton, Ontario, L6X 0Z9
+    street1: Suite 200
+    street2: 60 Gillingham Drive
+    city: Brampton
+    province: Ontario
+    postal_code: L6X 0Z9
+    phone: (905) 451-1937
+- input_postal_code: L6Y 6
+  result_postal_code: L5B 1J2
+  doctor:
+    cpso_number: '124392'
+    full_name: Chaudhry, Waseem Hussain
+    registration_status: Active
+  address:
+    full_address: Intrepid Medical Centre, 250 Dundas St W, Mississauga, ON, L5B 1J2
+    street1: Intrepid Medical Centre
+    street2: 250 Dundas St W
+    city: Mississauga
+    province: 'ON'
+    postal_code: L5B 1J2
+    phone: null
+- input_postal_code: L6Y 6
+  result_postal_code: L4H 3T6
+  doctor:
+    cpso_number: '276523'
+    full_name: Pelaccia, Anthony Mario
+    registration_status: Active
+  address:
+    full_address: 3600 Major MacKenzie Drive West (inside Walmart), MedCare Clinics
+      at Walmart Vaughan, Vaughan, Ontario, L4H 3T6
+    street1: 3600 Major MacKenzie Drive West (inside Walmart)
+    street2: MedCare Clinics at Walmart Vaughan
+    city: Vaughan
+    province: Ontario
+    postal_code: L4H 3T6
+    phone: 905-303-4003
+- input_postal_code: L7A 0
+  result_postal_code: L6Y 5X6
+  doctor:
+    cpso_number: '108597'
+    full_name: Khural, Ajay   Pal Singh
+    registration_status: Active
+  address:
+    full_address: Cornerstone Medical Centre, Unit 9, 8990 Chinguocousy Road., Brampton,
+      Brampton, Ontario, L6Y 5X6
+    street1: Cornerstone Medical Centre
+    street2: Unit 9
+    city: Brampton
+    province: Ontario
+    postal_code: L6Y 5X6
+    phone: 905-450-5780
+- input_postal_code: L7A 0
+  result_postal_code: L6W 0B3
+  doctor:
+    cpso_number: '91784'
+    full_name: Waraich, Ihsan   Ullah
+    registration_status: Active
+  address:
+    full_address: Kennedy Medical Clinic, 7990 Kennedy Road South,Unit 9, Brampton,
+      Ontario, L6W 0B3
+    street1: Kennedy Medical Clinic
+    street2: 7990 Kennedy Road South,Unit 9
+    city: Brampton
+    province: Ontario
+    postal_code: L6W 0B3
+    phone: (905) 455-5445
+- input_postal_code: L7A 0
+  result_postal_code: L5M 2G6
+  doctor:
+    cpso_number: '122146'
+    full_name: Beshay, Samy
+    registration_status: Active
+  address:
+    full_address: 9 - 2275 Brittania Rd W, Britannia Health Clinic, Mississauga, Ontario,
+      L5M 2G6
+    street1: 9 - 2275 Brittania Rd W
+    street2: Britannia Health Clinic
+    city: Mississauga
+    province: Ontario
+    postal_code: L5M 2G6
+    phone: 905-567-2525
+- input_postal_code: L7A 0
+  result_postal_code: L7A 3W3
+  doctor:
+    cpso_number: '108078'
+    full_name: Mohan, Rajiv
+    registration_status: Active
+  address:
+    full_address: 103-695 Remembrance Road, Brampton, Ontario, L7A 3W3
+    street1: 103-695 Remembrance Road
+    street2: null
+    city: Brampton
+    province: Ontario
+    postal_code: L7A 3W3
+    phone: '9058469090'
+- input_postal_code: L7A 0
+  result_postal_code: L9T 3Z3
+  doctor:
+    cpso_number: '268335'
+    full_name: Okerie, Oghale Marvelous
+    registration_status: Active
+  address:
+    full_address: 6-875 Main Street East, Hale Medical Centre, Milton, Ontario, L9T
+      3Z3
+    street1: 6-875 Main Street East
+    street2: Hale Medical Centre
+    city: Milton
+    province: Ontario
+    postal_code: L9T 3Z3
+    phone: '9056930090'
+- input_postal_code: L7A 1
+  result_postal_code: L9T 1Y8
+  doctor:
+    cpso_number: '278391'
+    full_name: Khan, Irma Najeeb
+    registration_status: Active
+  address:
+    full_address: 100 Bronte Street South, HALTON MEDIX MILTON CLINIC, Milton, Ontario,
+      L9T 1Y8
+    street1: 100 Bronte Street South
+    street2: HALTON MEDIX MILTON CLINIC
+    city: Milton
+    province: Ontario
+    postal_code: L9T 1Y8
+    phone: '2898120194'
+- input_postal_code: L7A 2
+  result_postal_code: L9R 1M1
+  doctor:
+    cpso_number: '130889'
+    full_name: Nam, Somin
+    registration_status: Active
+  address:
+    full_address: 200 Fletcher Cres, Stevenson Memorial Hospital, Alliston, ON, L9R
+      1M1
+    street1: 200 Fletcher Cres
+    street2: Stevenson Memorial Hospital
+    city: Alliston
+    province: 'ON'
+    postal_code: L9R 1M1
+    phone: null
+- input_postal_code: L7A 2
+  result_postal_code: M9V 1R8
+  doctor:
+    cpso_number: '77418'
+    full_name: Haider, Kamil
+    registration_status: Active
+  address:
+    full_address: William Osler Health System, Etobicoke General Hospital, Department
+      of Emergency Medicine, 101 Humber College Boulevard, Toronto, Ontario, M9V 1R8
+    street1: William Osler Health System
+    street2: Etobicoke General Hospital
+    city: Toronto
+    province: Ontario
+    postal_code: M9V 1R8
+    phone: (416) 747-3400
+- input_postal_code: L7A 2
+  result_postal_code: M9V 1R8
+  doctor:
+    cpso_number: '66387'
+    full_name: Chaudhry, Ijaz Ahmed
+    registration_status: Active
+  address:
+    full_address: Etobicoke General Hospital, Emergency Department, 101 Humber College
+      Boulevard, Etobicoke, Ontario, M9V 1R8
+    street1: Etobicoke General Hospital
+    street2: Emergency Department
+    city: Etobicoke
+    province: Ontario
+    postal_code: M9V 1R8
+    phone: (416) 747-3400
+- input_postal_code: L7A 2
+  result_postal_code: L5N 6A3
+  doctor:
+    cpso_number: '117097'
+    full_name: Gentles, Simone   Georgia
+    registration_status: Active
+  address:
+    full_address: 6905 Millcreek Drive, Unit 3, Mississauga, Ontario, L5N 6A3
+    street1: 6905 Millcreek Drive
+    street2: Unit 3
+    city: Mississauga
+    province: Ontario
+    postal_code: L5N 6A3
+    phone: '2892339883'
+- input_postal_code: L7A 2
+  result_postal_code: L4Z 1V9
+  doctor:
+    cpso_number: '124130'
+    full_name: Nastasi, Kamilla
+    registration_status: Active
+  address:
+    full_address: 301-57 Village Centre Place, Mississauga, Ontario, L4Z 1V9
+    street1: 301-57 Village Centre Place
+    street2: null
+    city: Mississauga
+    province: Ontario
+    postal_code: L4Z 1V9
+    phone: 905-896-0899
+- input_postal_code: L7A 2
+  result_postal_code: M9W 6N5
+  doctor:
+    cpso_number: '62248'
+    full_name: Mohammad, Naveed  Sajjad
+    registration_status: Active
+  address:
+    full_address: 25 Woodbine Downs Boulevard, Toronto, Ontario, M9W 6N5
+    street1: 25 Woodbine Downs Boulevard
+    street2: null
+    city: Toronto
+    province: Ontario
+    postal_code: M9W 6N5
+    phone: '4162586017'
+- input_postal_code: L7A 2
+  result_postal_code: L6W 0B3
+  doctor:
+    cpso_number: '91784'
+    full_name: Waraich, Ihsan   Ullah
+    registration_status: Active
+  address:
+    full_address: Kennedy Medical Clinic, 7990 Kennedy Road South,Unit 9, Brampton,
+      Ontario, L6W 0B3
+    street1: Kennedy Medical Clinic
+    street2: 7990 Kennedy Road South,Unit 9
+    city: Brampton
+    province: Ontario
+    postal_code: L6W 0B3
+    phone: (905) 455-5445
+- input_postal_code: L7A 2
   result_postal_code: M1P 2L9
   doctor:
-    cpso_number: '119396'
-    full_name: Stefanoff, Matthew   Anthony William
+    cpso_number: '77667'
+    full_name: Farooq, Warda   Umar
     registration_status: Active
   address:
     full_address: 1939 Kennedy Road, Toronto, Ontario, M1P 2L9
@@ -70,32 +2128,203 @@ mismatches:
     city: Toronto
     province: Ontario
     postal_code: M1P 2L9
-    phone: (647)-625-8799
-- input_postal_code: L4A 3
-  result_postal_code: M2J 2K9
+    phone: '6476258799'
+- input_postal_code: L7A 2
+  result_postal_code: L9W 4X9
   doctor:
-    cpso_number: '103436'
-    full_name: Ho, Jacqueline   Sing Woon
+    cpso_number: '102231'
+    full_name: Gayapershad, Thasvir   Krishna
     registration_status: Active
   address:
-    full_address: 301-4800 Leslie St, North York, ON, M2J 2K9
-    street1: 301-4800 Leslie St
-    street2: null
-    city: North York
-    province: 'ON'
-    postal_code: M2J 2K9
-    phone: 416-628-1312
-- input_postal_code: L4A 3
-  result_postal_code: M1V 4S5
-  doctor:
-    cpso_number: '88825'
-    full_name: Lim, Hilda   Hue-Ching
-    registration_status: Active
-  address:
-    full_address: Suite 102, 4631 Steeles Avenue East, Scarborough, Ontario, M1V 4S5
-    street1: Suite 102
-    street2: 4631 Steeles Avenue East
-    city: Scarborough
+    full_address: Headwaters Health Care Centre, 100 Rolling Hills Drive, Orangeville,
+      Ontario, L9W 4X9
+    street1: Headwaters Health Care Centre
+    street2: 100 Rolling Hills Drive
+    city: Orangeville
     province: Ontario
-    postal_code: M1V 4S5
-    phone: (416) 293-6600
+    postal_code: L9W 4X9
+    phone: (519) 941-2410
+- input_postal_code: L7A 2
+  result_postal_code: L4L 8Z2
+  doctor:
+    cpso_number: '95402'
+    full_name: Shahin, Ilan
+    registration_status: Active
+  address:
+    full_address: 4000 Highway 7 West, Vaughan, Ontario, L4L 8Z2
+    street1: 4000 Highway 7 West
+    street2: null
+    city: Vaughan
+    province: Ontario
+    postal_code: L4L 8Z2
+    phone: 905-851-3777
+- input_postal_code: L7A 3
+  result_postal_code: M3K 1Z1
+  doctor:
+    cpso_number: '118259'
+    full_name: Wang, Megan   Yuying
+    registration_status: Active
+  address:
+    full_address: 1017 Wilson Avenue, Toronto, Ontario, M3K 1Z1
+    street1: 1017 Wilson Avenue
+    street2: null
+    city: Toronto
+    province: Ontario
+    postal_code: M3K 1Z1
+    phone: '4165363750'
+- input_postal_code: L7A 3
+  result_postal_code: M5G 1N8
+  doctor:
+    cpso_number: '106887'
+    full_name: McCollum, Angeleen   Jasmine
+    registration_status: Active
+  address:
+    full_address: 700-790 Bay St, Toronto, ON, M5G 1N8
+    street1: 700-790 Bay St
+    street2: null
+    city: Toronto
+    province: 'ON'
+    postal_code: M5G 1N8
+    phone: 416-551-6006
+- input_postal_code: L7A 3
+  result_postal_code: L6V 1B3
+  doctor:
+    cpso_number: '102233'
+    full_name: Ratnayake, Aluthwala   Domingo Vithanage Sandhya Priadharshanie
+    registration_status: Active
+  address:
+    full_address: Suite 102, 169 Queen Street East, Brampton, Ontario, L6V 1B3
+    street1: Suite 102
+    street2: 169 Queen Street East
+    city: Brampton
+    province: Ontario
+    postal_code: L6V 1B3
+    phone: (905) 216-0663
+- input_postal_code: L7A 3
+  result_postal_code: L6H 7P6
+  doctor:
+    cpso_number: '86211'
+    full_name: Khanna, Rahul
+    registration_status: Active
+  address:
+    full_address: 333 Glenashton Drive, Oakville, Ontario, L6H 7P6
+    street1: 333 Glenashton Drive
+    street2: null
+    city: Oakville
+    province: Ontario
+    postal_code: L6H 7P6
+    phone: 905-338-3107
+- input_postal_code: L7A 3
+  result_postal_code: L9L 1L9
+  doctor:
+    cpso_number: '107476'
+    full_name: Cruise, Sean   Joseph
+    registration_status: Active
+  address:
+    full_address: 451 Paxton St, Lakeridge Health Port Perry, Port Perry, ON, L9L
+      1L9
+    street1: 451 Paxton St
+    street2: Lakeridge Health Port Perry
+    city: Port Perry
+    province: 'ON'
+    postal_code: L9L 1L9
+    phone: null
+- input_postal_code: L7A 3
+  result_postal_code: L6V 4H4
+  doctor:
+    cpso_number: '158848'
+    full_name: Tejpal, Chavi
+    registration_status: Active
+  address:
+    full_address: 36 Vodden Street East, Central West OHT "CARE" of the Frail elderly
+      Program, Suite 308, Brampton, Ontario, L6V 4H4
+    street1: 36 Vodden Street East
+    street2: Central West OHT "CARE" of the Frail elderly Program
+    city: Brampton
+    province: Ontario
+    postal_code: L6V 4H4
+    phone: 437-317-0808
+- input_postal_code: L7A 3
+  result_postal_code: L5V 2A8
+  doctor:
+    cpso_number: '140129'
+    full_name: Lokhandwala, Juzer Mansoor
+    registration_status: Active
+  address:
+    full_address: 6045 Creditview Road, Mississauga, Ontario, L5V 2A8
+    street1: 6045 Creditview Road
+    street2: null
+    city: Mississauga
+    province: Ontario
+    postal_code: L5V 2A8
+    phone: 905-826-6095
+- input_postal_code: L7A 4
+  result_postal_code: L7A 0G1
+  doctor:
+    cpso_number: '123067'
+    full_name: Joshi, Rajan
+    registration_status: Active
+  address:
+    full_address: 11210 Creditview Road, Brampton, Ontario, L7A 0G1
+    street1: 11210 Creditview Road
+    street2: null
+    city: Brampton
+    province: Ontario
+    postal_code: L7A 0G1
+    phone: (905) 257-6712
+- input_postal_code: L7A 4
+  result_postal_code: M9R 2Y8
+  doctor:
+    cpso_number: '99127'
+    full_name: Sandhu, Guninder Bir Singh
+    registration_status: Active
+  address:
+    full_address: 1723 Kipling Avenue, Unit 2G, Etobicoke, Ontario, M9R 2Y8
+    street1: 1723 Kipling Avenue
+    street2: Unit 2G
+    city: Etobicoke
+    province: Ontario
+    postal_code: M9R 2Y8
+    phone: '6477488011'
+- input_postal_code: L7A 4
+  result_postal_code: M9R 4E1
+  doctor:
+    cpso_number: '99128'
+    full_name: Sandhu, Janmeet
+    registration_status: Active
+  address:
+    full_address: 1723 Kipling Avenue, Unit 2 G, Toronto, Ontario, M9R 4E1
+    street1: 1723 Kipling Avenue
+    street2: Unit 2 G
+    city: Toronto
+    province: Ontario
+    postal_code: M9R 4E1
+    phone: 647-748-8011
+- input_postal_code: L7A 4
+  result_postal_code: L7A 3W3
+  doctor:
+    cpso_number: '108078'
+    full_name: Mohan, Rajiv
+    registration_status: Active
+  address:
+    full_address: 103-695 Remembrance Road, Brampton, Ontario, L7A 3W3
+    street1: 103-695 Remembrance Road
+    street2: null
+    city: Brampton
+    province: Ontario
+    postal_code: L7A 3W3
+    phone: '9058469090'
+- input_postal_code: L7A 5
+  result_postal_code: K9V 4M8
+  doctor:
+    cpso_number: '122542'
+    full_name: Sohi, Chandpreet   Kaur
+    registration_status: Active
+  address:
+    full_address: 10 Angeline Street North, Kawartha Lakes, Ontario, K9V 4M8
+    street1: 10 Angeline Street North
+    street2: null
+    city: Kawartha Lakes
+    province: Ontario
+    postal_code: K9V 4M8
+    phone: 705 324 6111

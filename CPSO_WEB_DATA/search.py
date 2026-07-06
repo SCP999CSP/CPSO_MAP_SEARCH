@@ -11,6 +11,8 @@ import psycopg2
 import requests
 import yaml
 
+from fetch_additional_addresses import clear_additional_addresses, sync_additional_addresses
+
 # 数据库连接（优先使用环境变量）
 DATABASE_URL = os.getenv(
     "DATABASE_URL",
@@ -236,16 +238,20 @@ def fetch_search_results(payload: dict) -> tuple[int, list[dict]]:
     return total, results
 
 
-def upsert_doctor(conn, cpso_number: str, full_name: str, doc: dict) -> None:
-    """插入或更新 doctors 表。"""
-    status = doc.get("registrationstatus") or doc.get("registration_status")
-    status_label = doc.get("registrationstatuslabel") or doc.get("registration_status_label")
+def _get_additional_address_count(doc: dict) -> int:
+    """从 API 结果提取附加地址数量。"""
     add_count = doc.get("additionaladdresscount") or doc.get("additional_address_count")
     if add_count is None:
         addrs = doc.get("addresses") or doc.get("addressList") or []
-        add_count = len(addrs) if isinstance(addrs, list) else 0
-    else:
-        add_count = int(add_count)
+        return len(addrs) if isinstance(addrs, list) else 0
+    return int(add_count)
+
+
+def upsert_doctor(conn, cpso_number: str, full_name: str, doc: dict) -> None:
+    """插入或按 cpso_number 更新 doctors 表（不覆盖 gender 等详情页字段）。"""
+    status = doc.get("registrationstatus") or doc.get("registration_status")
+    status_label = doc.get("registrationstatuslabel") or doc.get("registration_status_label")
+    add_count = _get_additional_address_count(doc)
 
     with conn.cursor() as cur:
         cur.execute(
@@ -258,9 +264,9 @@ def upsert_doctor(conn, cpso_number: str, full_name: str, doc: dict) -> None:
             VALUES (%s, %s, %s, %s, %s, NOW(), NOW())
             ON CONFLICT (cpso_number) DO UPDATE SET
                 full_name = EXCLUDED.full_name,
-                registration_status = COALESCE(EXCLUDED.registration_status, doctors.registration_status),
-                registration_status_label = COALESCE(EXCLUDED.registration_status_label, doctors.registration_status_label),
-                additional_address_count = GREATEST(doctors.additional_address_count, EXCLUDED.additional_address_count),
+                registration_status = EXCLUDED.registration_status,
+                registration_status_label = EXCLUDED.registration_status_label,
+                additional_address_count = EXCLUDED.additional_address_count,
                 updated_at = NOW()
             """,
             (
@@ -273,35 +279,13 @@ def upsert_doctor(conn, cpso_number: str, full_name: str, doc: dict) -> None:
         )
 
 
-def doctor_exists(conn, cpso_number: str) -> bool:
-    """检查该医生（cpso_number）是否已在 doctors 表中。"""
+def replace_primary_address(conn, cpso_number: str, addr: dict) -> None:
+    """删除该医生旧主地址并插入 API 返回的最新主地址。"""
     with conn.cursor() as cur:
-        cur.execute("SELECT 1 FROM doctors WHERE cpso_number = %s", (cpso_number,))
-        return cur.fetchone() is not None
-
-
-def insert_address(conn, cpso_number: str, addr: dict) -> bool:
-    """
-    插入一条 doctor_addresses 记录（如已存在相同 full_address 则跳过）。
-    返回是否实际插入。
-    """
-    with conn.cursor() as cur:
-        full = addr.get("full_address")
-        if full:
-            cur.execute(
-                "SELECT 1 FROM doctor_addresses WHERE cpso_number = %s AND full_address = %s",
-                (cpso_number, full),
-            )
-            if cur.fetchone():
-                return False
-        elif addr.get("postal_code"):
-            cur.execute(
-                "SELECT 1 FROM doctor_addresses WHERE cpso_number = %s AND postal_code = %s AND (full_address IS NULL OR full_address = '')",
-                (cpso_number, addr["postal_code"]),
-            )
-            if cur.fetchone():
-                return False
-
+        cur.execute(
+            "DELETE FROM doctor_addresses WHERE cpso_number = %s AND is_primary = TRUE",
+            (cpso_number,),
+        )
         cur.execute(
             """
             INSERT INTO doctor_addresses (
@@ -315,7 +299,7 @@ def insert_address(conn, cpso_number: str, addr: dict) -> bool:
             (
                 str(uuid.uuid4()),
                 cpso_number,
-                addr.get("is_primary", True),
+                True,
                 addr.get("not_in_practice", False),
                 addr.get("street1"),
                 addr.get("street2"),
@@ -329,7 +313,6 @@ def insert_address(conn, cpso_number: str, addr: dict) -> bool:
                 addr.get("fax"),
             ),
         )
-        return True
 
 
 def _mismatch_record(input_pc: str, doc: dict, addr: dict, result_pc: str) -> dict:
@@ -359,14 +342,12 @@ def _mismatch_record(input_pc: str, doc: dict, addr: dict, result_pc: str) -> di
 
 def search_and_save(payload: dict) -> tuple[int, int, int, int, list[dict]]:
     """
-    执行搜索并将结果写入数据库。
-    若医生（cpso_number）已存在于 doctors 表则跳过，不重复录入。
-    返回 (总匹配数, 写入医生数, 写入地址数, 跳过医生数, 专科过滤数, 邮编前四位不匹配记录列表)。
+    执行搜索并将结果写入数据库（按 cpso_number upsert 医生并同步主/附加地址）。
+    返回 (总匹配数, 同步医生数, 写入地址数, 专科过滤数, 邮编前四位不匹配记录列表)。
     """
     total, results = fetch_search_results(payload)
-    doctors_written = 0
+    doctors_synced = 0
     addresses_written = 0
-    doctors_skipped = 0
     doctors_filtered = 0
     input_first4 = _postal_first4(payload.get("postalCode", ""))
     mismatches: list[dict] = []
@@ -377,35 +358,46 @@ def search_and_save(payload: dict) -> tuple[int, int, int, int, list[dict]]:
             cpso = _get_cpso_number(doc)
             if not cpso:
                 continue
-            if doctor_exists(conn, cpso):
-                doctors_skipped += 1
-                continue
             if not _is_family_medicine_only(doc):
                 doctors_filtered += 1
                 continue
+
             full_name = _get_full_name(doc)
             upsert_doctor(conn, cpso, full_name, doc)
-            doctors_written += 1
+            doctors_synced += 1
 
-            for i, addr in enumerate(_parse_addresses(doc)):
-                if i == 0:
-                    addr.setdefault("is_primary", True)
-                else:
-                    addr.setdefault("is_primary", False)
-                if insert_address(conn, cpso, addr):
-                    addresses_written += 1
+            addrs = _parse_addresses(doc)
+            if addrs:
+                primary = addrs[0]
+                primary["is_primary"] = True
+                replace_primary_address(conn, cpso, primary)
+                addresses_written += 1
 
-                result_pc = addr.get("postal_code") or doc.get("postalcode") or doc.get("postal_code")
+                result_pc = (
+                    primary.get("postal_code")
+                    or doc.get("postalcode")
+                    or doc.get("postal_code")
+                )
                 if result_pc and _postal_first4(result_pc) != input_first4:
                     mismatches.append(_mismatch_record(
-                        payload.get("postalCode", ""), doc, addr, result_pc or ""
+                        payload.get("postalCode", ""), doc, primary, result_pc or ""
                     ))
+
+            add_count = _get_additional_address_count(doc)
+            if add_count > 0:
+                try:
+                    _, inserted = sync_additional_addresses(conn, cpso)
+                    addresses_written += inserted
+                except Exception as e:
+                    print(f"    {cpso}: 附加地址同步失败 - {e}")
+            else:
+                clear_additional_addresses(conn, cpso)
 
         conn.commit()
     finally:
         conn.close()
 
-    return total, doctors_written, addresses_written, doctors_skipped, doctors_filtered, mismatches
+    return total, doctors_synced, addresses_written, doctors_filtered, mismatches
 
 
 def main():
@@ -423,14 +415,12 @@ def main():
         payload = build_payload(pc, cfg)
         print(f"  [{i}/{len(postal_codes)}] postalCode={pc!r} ...")
         try:
-            total, doctors_written, addresses_written, doctors_skipped, doctors_filtered, mismatches = search_and_save(payload)
+            total, doctors_synced, addresses_written, doctors_filtered, mismatches = search_and_save(payload)
             total_matches += total
-            total_doctors += doctors_written
+            total_doctors += doctors_synced
             total_addresses += addresses_written
             all_mismatches.extend(mismatches)
-            parts = [f"matches: {total}", f"written: {doctors_written} doctors, {addresses_written} addresses"]
-            if doctors_skipped:
-                parts.append(f"skipped: {doctors_skipped}")
+            parts = [f"matches: {total}", f"synced: {doctors_synced} doctors, {addresses_written} addresses"]
             if doctors_filtered:
                 parts.append(f"filtered: {doctors_filtered}")
             if mismatches:
@@ -451,7 +441,7 @@ def main():
         print(f"\n邮编前四位不匹配记录已写入 {MISMATCH_PATH}（共 {len(all_mismatches)} 条）")
 
     print(f"\nTotal matches: {total_matches}")
-    print(f"Written: {total_doctors} doctors, {total_addresses} addresses.")
+    print(f"Synced: {total_doctors} doctors, {total_addresses} addresses.")
     if failed_postal_codes:
         print(f"Skipped due to errors: {failed_postal_codes} postal code(s).")
 
