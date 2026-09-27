@@ -410,13 +410,23 @@ def main():
     total_addresses = 0
     all_mismatches: list[dict] = []
     failed_postal_codes = 0
+    too_broad_postal_codes: list[str] = []
 
     for i, pc in enumerate(postal_codes, 1):
         payload = build_payload(pc, cfg)
         print(f"  [{i}/{len(postal_codes)}] postalCode={pc!r} ...")
         try:
             total, doctors_synced, addresses_written, doctors_filtered, mismatches = search_and_save(payload)
-            total_matches += total
+            if total == -1:
+                too_broad_postal_codes.append(pc)
+                print(
+                    "    -> matches: -1（结果过多，API 未返回列表）, "
+                    f"synced: {doctors_synced} doctors, {addresses_written} addresses"
+                )
+                print("       请将该邮编拆成更细的片段后重试")
+                continue
+            if total > 0:
+                total_matches += total
             total_doctors += doctors_synced
             total_addresses += addresses_written
             all_mismatches.extend(mismatches)
@@ -442,6 +452,11 @@ def main():
 
     print(f"\nTotal matches: {total_matches}")
     print(f"Synced: {total_doctors} doctors, {total_addresses} addresses.")
+    if too_broad_postal_codes:
+        print(
+            f"Too broad (matches=-1, 请拆细): "
+            + ", ".join(repr(pc) for pc in too_broad_postal_codes)
+        )
     if failed_postal_codes:
         print(f"Skipped due to errors: {failed_postal_codes} postal code(s).")
 
