@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { markersBySpecialty, slotPosition } from "./mapGrouping";
+import { markersBySpecialty, markersForZoom, SPLIT_ZOOM, slotPosition } from "./mapGrouping";
 import type { MapLocation } from "./types";
 
 function loc(
@@ -51,6 +51,35 @@ describe("markersBySpecialty", () => {
     ]);
     expect(markers).toHaveLength(2);
     expect(markers.every((m) => m.slotCount === 1)).toBe(true);
+  });
+});
+
+describe("markersForZoom", () => {
+  it("collapses different specialties into one point below the split zoom", () => {
+    const markers = markersBySpecialty([
+      loc("a", "Neurology"),
+      loc("b", "Neurology"),
+      loc("c", "Dermatology"),
+    ]);
+    const shown = markersForZoom(markers, SPLIT_ZOOM - 1);
+    expect(shown).toHaveLength(1);
+    expect(shown[0]).toMatchObject({ kind: "site", records: expect.any(Array) });
+    if (shown[0].kind !== "site") return;
+    expect(shown[0].records.map((r) => r.id).sort()).toEqual(["a", "b", "c"]);
+  });
+
+  it("splits specialties once zoomed in", () => {
+    const markers = markersBySpecialty([
+      loc("a", "Neurology"),
+      loc("c", "Dermatology"),
+    ]);
+    const shown = markersForZoom(markers, SPLIT_ZOOM);
+    expect(shown.map((m) => m.kind)).toEqual(["specialty", "specialty"]);
+  });
+
+  it("leaves a single specialty as its own point at any zoom", () => {
+    const markers = markersBySpecialty([loc("a", "Hematology")]);
+    expect(markersForZoom(markers, SPLIT_ZOOM - 1)[0].kind).toBe("specialty");
   });
 });
 

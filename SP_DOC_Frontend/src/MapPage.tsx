@@ -7,7 +7,7 @@ import {
 } from "@react-google-maps/api";
 import { fetchLocations } from "./api";
 import { boundsKey, fromLatLngBounds } from "./bounds";
-import { markersBySpecialty, slotPosition } from "./mapGrouping";
+import { markersBySpecialty, markersForZoom, slotPosition } from "./mapGrouping";
 import {
   CATEGORY_COLORS,
   CATEGORY_LABELS,
@@ -48,6 +48,19 @@ const MAP_OPTIONS: google.maps.MapOptions = {
     },
   ],
 };
+
+const SITE_COLOR = "#334155";
+
+function getSiteIcon() {
+  return {
+    path: window.google.maps.SymbolPath.CIRCLE,
+    scale: 18,
+    fillColor: SITE_COLOR,
+    fillOpacity: 1,
+    strokeColor: "white",
+    strokeWeight: 2,
+  };
+}
 
 function getIcon(category: Specialty, isGroup: boolean) {
   return {
@@ -136,6 +149,10 @@ export default function MapPage() {
   });
 
   const groups = useMemo(() => markersBySpecialty(locations), [locations]);
+  const displayMarkers = useMemo(
+    () => markersForZoom(groups, zoom),
+    [groups, zoom]
+  );
 
   const shownCount = useMemo(
     () => groups.reduce((sum, g) => sum + g.records.length, 0),
@@ -228,7 +245,7 @@ export default function MapPage() {
       >
         <div>
           当前范围 <strong>{shownCount}</strong> 条地址 · 地图{" "}
-          <strong>{groups.length}</strong> 个点位
+          <strong>{displayMarkers.length}</strong> 个点位
           {loading && <span style={{ marginLeft: 8 }}>加载中…</span>}
         </div>
         {locations.length >= MAX_LOCATIONS && (
@@ -239,6 +256,9 @@ export default function MapPage() {
         {error && (
           <div style={{ color: "#b91c1c", marginTop: 4 }}>{error}</div>
         )}
+        <div style={{ marginTop: 6, color: "#4b5563", fontSize: 13 }}>
+          同一地点有多种专科时先合成一个点，放大后分开。
+        </div>
         <div
           style={{
             marginTop: 8,
@@ -268,9 +288,44 @@ export default function MapPage() {
         onLoad={onLoad}
         onUnmount={onUnmount}
         onIdle={onIdle}
+        onZoomChanged={() => {
+          const z = mapRef.current?.getZoom();
+          if (typeof z === "number") setZoom(z);
+        }}
         onClick={() => setSelectedKey(null)}
       >
-        {groups.map((g) => {
+        {displayMarkers.map((g) => {
+          if (g.kind === "site") {
+            const n = g.records.length;
+            const isSelected = selectedKey === g.key;
+            const toggle = () => setSelectedKey(isSelected ? null : g.key);
+            return (
+              <MarkerF
+                key={g.key}
+                position={{ lat: g.latitude, lng: g.longitude }}
+                icon={getSiteIcon()}
+                label={{
+                  text: String(n),
+                  color: "white",
+                  fontSize: "12px",
+                  fontWeight: "bold",
+                }}
+                title={`同一地点 ${n} 位医生\n放大后按专科分开`}
+                onClick={toggle}
+              >
+                {isSelected && (
+                  <InfoWindowF onCloseClick={() => setSelectedKey(null)}>
+                    <DoctorList
+                      title={`同一地点 · ${n} 位`}
+                      note="放大后按专科分开显示。"
+                      records={g.records}
+                    />
+                  </InfoWindowF>
+                )}
+              </MarkerF>
+            );
+          }
+
           const pos = slotPosition(
             g.latitude,
             g.longitude,
@@ -343,66 +398,69 @@ export default function MapPage() {
             >
               {isSelected && (
                 <InfoWindowF onCloseClick={() => setSelectedKey(null)}>
-                  <div
-                    style={{
-                      maxHeight: 320,
-                      overflowY: "auto",
-                      minWidth: 260,
-                      textAlign: "left",
-                      fontSize: 15,
-                      lineHeight: 1.45,
-                    }}
-                  >
-                    <strong style={{ fontSize: 17 }}>
-                      {CATEGORY_LABELS[category]} · {n} 位
-                    </strong>
-                    <p
-                      style={{
-                        fontSize: 14,
-                        margin: "8px 0 12px",
-                        color: "#4b5563",
-                      }}
-                    >
-                      约 45m 范围内同专科的地址已合并。
-                    </p>
-                    {g.records.map((r) => (
-                      <div
-                        key={r.id}
-                        style={{
-                          borderTop: "1px solid #e5e7eb",
-                          padding: "10px 0",
-                        }}
-                      >
-                        <div style={{ fontWeight: 600, fontSize: 16 }}>
-                          {r.full_name}
-                        </div>
-                        <div style={{ fontSize: 15, marginTop: 4 }}>
-                          CPSO: {r.cpso_number}
-                        </div>
-                        <SpecialtyLine r={r} />
-                        <DoctorProfileFields r={r} />
-                        <ContactFields r={r} />
-                        <button
-                          type="button"
-                          onClick={() => openDoctor(r.cpso_number)}
-                          style={{
-                            marginTop: 8,
-                            cursor: "pointer",
-                            fontSize: 15,
-                            padding: "5px 10px",
-                          }}
-                        >
-                          查看详情
-                        </button>
-                      </div>
-                    ))}
-                  </div>
+                  <DoctorList
+                    title={`${CATEGORY_LABELS[category]} · ${n} 位`}
+                    note="约 45m 范围内同专科的地址已合并。"
+                    records={g.records}
+                  />
                 </InfoWindowF>
               )}
             </MarkerF>
           );
         })}
       </GoogleMap>
+    </div>
+  );
+}
+
+function DoctorList({
+  title,
+  note,
+  records,
+}: {
+  title: string;
+  note: string;
+  records: MapLocation[];
+}) {
+  return (
+    <div
+      style={{
+        maxHeight: 320,
+        overflowY: "auto",
+        minWidth: 260,
+        textAlign: "left",
+        fontSize: 15,
+        lineHeight: 1.45,
+      }}
+    >
+      <strong style={{ fontSize: 17 }}>{title}</strong>
+      <p style={{ fontSize: 14, margin: "8px 0 12px", color: "#4b5563" }}>
+        {note}
+      </p>
+      {records.map((r) => (
+        <div
+          key={r.id}
+          style={{ borderTop: "1px solid #e5e7eb", padding: "10px 0" }}
+        >
+          <div style={{ fontWeight: 600, fontSize: 16 }}>{r.full_name}</div>
+          <div style={{ fontSize: 15, marginTop: 4 }}>CPSO: {r.cpso_number}</div>
+          <SpecialtyLine r={r} />
+          <DoctorProfileFields r={r} />
+          <ContactFields r={r} />
+          <button
+            type="button"
+            onClick={() => openDoctor(r.cpso_number)}
+            style={{
+              marginTop: 8,
+              cursor: "pointer",
+              fontSize: 15,
+              padding: "5px 10px",
+            }}
+          >
+            查看详情
+          </button>
+        </div>
+      ))}
     </div>
   );
 }

@@ -82,9 +82,62 @@ export function markersBySpecialty(records: MapLocation[]): SpecialtyMarker[] {
   return markers;
 }
 
-/** 同一地点的不同专科并排，放大后能分开，缩小时不甩出网格 */
-const SLOT_SPACING_PX = 28;
-const MAX_SLOT_SPACING_M = 18;
+/** 达到该级别后，同一地点的不同专科才拆成并排的点 */
+export const SPLIT_ZOOM = 16;
+
+/** 拆开后的点并排，间距随缩放变大，但不超过约一个街区 */
+const SLOT_SPACING_PX = 32;
+const MAX_SLOT_SPACING_M = 40;
+
+export type SiteMarker = {
+  kind: "site";
+  key: string;
+  latitude: number;
+  longitude: number;
+  records: MapLocation[];
+};
+
+export type DisplayMarker = ({ kind: "specialty" } & SpecialtyMarker) | SiteMarker;
+
+/** 未放大时，多种专科合成一个点；放大到 SPLIT_ZOOM 后再按专科分开 */
+export function markersForZoom(
+  markers: SpecialtyMarker[],
+  zoom: number
+): DisplayMarker[] {
+  if (zoom >= SPLIT_ZOOM) {
+    return markers.map((marker) => ({ kind: "specialty", ...marker }));
+  }
+
+  const sites = new Map<string, SpecialtyMarker[]>();
+  for (const marker of markers) {
+    if (marker.slotCount <= 1) continue;
+    const siteKey = marker.key.slice(0, marker.key.lastIndexOf(":"));
+    const list = sites.get(siteKey);
+    if (list) list.push(marker);
+    else sites.set(siteKey, [marker]);
+  }
+
+  const out: DisplayMarker[] = [];
+  const emitted = new Set<string>();
+  for (const marker of markers) {
+    if (marker.slotCount <= 1) {
+      out.push({ kind: "specialty", ...marker });
+      continue;
+    }
+    const siteKey = marker.key.slice(0, marker.key.lastIndexOf(":"));
+    if (emitted.has(siteKey)) continue;
+    emitted.add(siteKey);
+    const parts = sites.get(siteKey) ?? [];
+    out.push({
+      kind: "site",
+      key: siteKey,
+      latitude: parts[0]?.latitude ?? marker.latitude,
+      longitude: parts[0]?.longitude ?? marker.longitude,
+      records: parts.flatMap((part) => part.records),
+    });
+  }
+  return out;
+}
 
 export function slotPosition(
   lat: number,
