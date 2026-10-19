@@ -49,7 +49,7 @@ const MAP_OPTIONS: google.maps.MapOptions = {
   ],
 };
 
-const SITE_COLOR = "#334155";
+const SITE_COLOR = "rgba(255, 7, 243, 0.8)";
 
 function getSiteIcon() {
   return {
