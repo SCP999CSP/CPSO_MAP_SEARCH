@@ -1,0 +1,131 @@
+name: Deploy SP DOC to Cloud Run
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: deploy-sp-doc
+  cancel-in-progress: false
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    environment: staging
+    env:
+      IMAGE: docker.io/${{ vars.DOCKERHUB_USERNAME }}/cpsomapsearch
+    defaults:
+      run:
+        working-directory: SP_DOC_Backend
+    outputs:
+      url: ${{ steps.deploy.outputs.url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v6
+
+      - name: Test
+        run: |
+          uv sync --locked
+          uv run pytest -q
+
+      - uses: docker/login-action@v3
+        with:
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - uses: docker/setup-buildx-action@v3
+
+      - uses: docker/build-push-action@v6
+        with:
+          context: SP_DOC_Backend
+          push: true
+          tags: |
+            ${{ env.IMAGE }}:backend-${{ github.sha }}
+            ${{ env.IMAGE }}:backend-latest
+
+      - uses: google-github-actions/auth@v2
+        with:
+          project_id: ${{ vars.GCP_PROJECT_ID }}
+          workload_identity_provider: ${{ vars.WIF_PROVIDER }}
+          service_account: ${{ vars.DEPLOY_SA }}
+
+      - id: deploy
+        uses: google-github-actions/deploy-cloudrun@v2
+        with:
+          project_id: ${{ vars.GCP_PROJECT_ID }}
+          region: ${{ vars.GCP_REGION }}
+          service: ${{ vars.BACKEND_SERVICE }}
+          image: ${{ env.IMAGE }}:backend-${{ github.sha }}
+          env_vars: |
+            DATABASE_URL=${{ secrets.DATABASE_URL }}
+          flags: --allow-unauthenticated --port=8080
+
+  frontend:
+    needs: backend
+    runs-on: ubuntu-latest
+    environment:
+      name: staging
+      url: ${{ steps.deploy.outputs.url }}
+    env:
+      IMAGE: docker.io/${{ vars.DOCKERHUB_USERNAME }}/cpsomapsearch
+    defaults:
+      run:
+        working-directory: SP_DOC_Frontend
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: SP_DOC_Frontend/pnpm-lock.yaml
+
+      - name: Test
+        run: |
+          pnpm install --frozen-lockfile
+          pnpm test
+
+      - uses: docker/login-action@v3
+        with:
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - uses: docker/setup-buildx-action@v3
+
+      - uses: docker/build-push-action@v6
+        with:
+          context: SP_DOC_Frontend
+          push: true
+          tags: |
+            ${{ env.IMAGE }}:frontend-${{ github.sha }}
+            ${{ env.IMAGE }}:frontend-latest
+          build-args: |
+            VITE_GOOGLE_MAPS_API_KEY=${{ secrets.VITE_GOOGLE_MAPS_API_KEY }}
+
+      - uses: google-github-actions/auth@v2
+        with:
+          project_id: ${{ vars.GCP_PROJECT_ID }}
+          workload_identity_provider: ${{ vars.WIF_PROVIDER }}
+          service_account: ${{ vars.DEPLOY_SA }}
+
+      - id: deploy
+        uses: google-github-actions/deploy-cloudrun@v2
+        with:
+          project_id: ${{ vars.GCP_PROJECT_ID }}
+          region: ${{ vars.GCP_REGION }}
+          service: ${{ vars.FRONTEND_SERVICE }}
+          image: ${{ env.IMAGE }}:frontend-${{ github.sha }}
+          env_vars: |
+            BACKEND_URL=${{ needs.backend.outputs.url }}
+            NGINX_RESOLVER=8.8.8.8
+          flags: --allow-unauthenticated --port=8080

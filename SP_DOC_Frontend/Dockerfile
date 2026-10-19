@@ -20,7 +20,10 @@ RUN pnpm run build
 # Serve static files and proxy /api
 FROM nginx:1.27-alpine
 
-ENV BACKEND_URL=http://sp_doc_backend:8000
+# Cloud Run 上覆盖为 PORT=8080、NGINX_RESOLVER=8.8.8.8、BACKEND_URL=https://...run.app
+ENV PORT=80 \
+    NGINX_RESOLVER=127.0.0.11 \
+    BACKEND_URL=http://sp_doc_backend:8000
 
 COPY nginx.conf.template /etc/nginx/templates/default.conf.template
 COPY --from=builder /app/dist /usr/share/nginx/html

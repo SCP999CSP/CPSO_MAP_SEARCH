@@ -10,4 +10,5 @@ DATABASE_URL = os.getenv(
     "postgresql://postgres:postgres@localhost:5432/cpso_spdoc",
 )
 
-engine = create_engine(DATABASE_URL)
+# Neon 会关闭空闲连接，取用前先探活
+engine = create_engine(DATABASE_URL, pool_pre_ping=True, pool_recycle=300)
