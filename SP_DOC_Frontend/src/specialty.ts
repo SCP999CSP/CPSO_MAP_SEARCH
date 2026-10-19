@@ -13,10 +13,10 @@ export type DoctorCategory = Specialty | "multi" | "none";
 
 export const CATEGORY_COLORS: Record<Specialty, string> = {
   Hematology: "rgb(245, 12, 12)",
-  Neurology: "rgb(0, 255, 21)",
-  Rheumatology: "rgb(0, 46, 252)",
-  Dermatology: "rgb(251, 255, 0)",
-  Gastroenterology: "rgba(216, 184, 0, 0.64)",
+  Neurology: "rgba(0, 255, 21, 0.76)",
+  Rheumatology: "rgb(0, 32, 173)",
+  Dermatology: "rgb(255, 217, 0)",
+  Gastroenterology: "rgba(0, 0, 0, 0.64)",
 };
 
 export const CATEGORY_LABELS: Record<Specialty, string> = {
