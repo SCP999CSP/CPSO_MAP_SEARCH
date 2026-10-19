@@ -7,15 +7,13 @@ import {
 } from "@react-google-maps/api";
 import { fetchLocations } from "./api";
 import { boundsKey, fromLatLngBounds } from "./bounds";
-import { groupByCoordinates } from "./mapGrouping";
+import { markersBySpecialty, slotPosition } from "./mapGrouping";
 import {
   CATEGORY_COLORS,
   CATEGORY_LABELS,
-  doctorCategory,
-  groupCategory,
   matchSpecialties,
-  type DoctorCategory,
-  type GroupCategory,
+  SPECIALTIES,
+  type Specialty,
 } from "./specialty";
 import type { MapLocation } from "./types";
 
@@ -36,6 +34,14 @@ const MAP_OPTIONS: google.maps.MapOptions = {
       stylers: [{ visibility: "off" }],
     },
     {
+      featureType: "poi.attraction",
+      stylers: [{ visibility: "off" }],
+    },
+    {
+      featureType: "poi.park",
+      stylers: [{ visibility: "off" }],
+    },
+    {
       featureType: "transit",
       elementType: "labels.icon",
       stylers: [{ visibility: "off" }],
@@ -43,17 +49,7 @@ const MAP_OPTIONS: google.maps.MapOptions = {
   ],
 };
 
-const LEGEND_CATEGORIES: DoctorCategory[] = [
-  "Hematology",
-  "Neurology",
-  "Rheumatology",
-  "Dermatology",
-  "Gastroenterology",
-  "multi",
-  "none",
-];
-
-function getIcon(category: GroupCategory, isGroup: boolean) {
+function getIcon(category: Specialty, isGroup: boolean) {
   return {
     path: window.google.maps.SymbolPath.CIRCLE,
     scale: isGroup ? 18 : 10,
@@ -80,8 +76,8 @@ function formatAddress(r: MapLocation): string | null {
 
 function SpecialtyLine({ r }: { r: MapLocation }) {
   const matched = matchSpecialties(r.specialties);
-  if (matched.length === 0) return null;
-  const color = CATEGORY_COLORS[doctorCategory(r.specialties)];
+  if (matched.length !== 1) return null;
+  const color = CATEGORY_COLORS[matched[0]];
   return (
     <div style={{ fontSize: 15, lineHeight: 1.45, color, fontWeight: 600 }}>
       {matched.join(" | ")}
@@ -132,26 +128,34 @@ export default function MapPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [selectedKey, setSelectedKey] = useState<string | null>(null);
+  const [zoom, setZoom] = useState(11);
 
   const { isLoaded, loadError } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY ?? "",
   });
 
-  const groups = useMemo(() => groupByCoordinates(locations), [locations]);
+  const groups = useMemo(() => markersBySpecialty(locations), [locations]);
+
+  const shownCount = useMemo(
+    () => groups.reduce((sum, g) => sum + g.records.length, 0),
+    [groups]
+  );
 
   const categoryCounts = useMemo(() => {
-    const counts = new Map<DoctorCategory, number>();
-    for (const loc of locations) {
-      const c = doctorCategory(loc.specialties);
-      counts.set(c, (counts.get(c) ?? 0) + 1);
+    const counts = new Map<Specialty, number>();
+    for (const g of groups) {
+      counts.set(g.specialty, (counts.get(g.specialty) ?? 0) + g.records.length);
     }
     return counts;
-  }, [locations]);
+  }, [groups]);
 
   const onIdle = useCallback(() => {
     const latLngBounds = mapRef.current?.getBounds();
     if (!latLngBounds) return;
+
+    const z = mapRef.current?.getZoom();
+    if (typeof z === "number") setZoom(z);
 
     const bounds = fromLatLngBounds(latLngBounds);
     const key = boundsKey(bounds);
@@ -223,7 +227,7 @@ export default function MapPage() {
         }}
       >
         <div>
-          当前范围 <strong>{locations.length}</strong> 条地址 · 地图{" "}
+          当前范围 <strong>{shownCount}</strong> 条地址 · 地图{" "}
           <strong>{groups.length}</strong> 个点位
           {loading && <span style={{ marginLeft: 8 }}>加载中…</span>}
         </div>
@@ -246,12 +250,12 @@ export default function MapPage() {
             alignItems: "center",
           }}
         >
-          {[...LEGEND_CATEGORIES, "mixed" as const].map((c) => (
+          {SPECIALTIES.map((c) => (
             <LegendRow
               key={c}
               color={CATEGORY_COLORS[c]}
               label={CATEGORY_LABELS[c]}
-              count={c === "mixed" ? undefined : categoryCounts.get(c) ?? 0}
+              count={categoryCounts.get(c) ?? 0}
             />
           ))}
         </div>
@@ -267,10 +271,16 @@ export default function MapPage() {
         onClick={() => setSelectedKey(null)}
       >
         {groups.map((g) => {
-          const pos = { lat: g.latitude, lng: g.longitude };
+          const pos = slotPosition(
+            g.latitude,
+            g.longitude,
+            g.slot,
+            g.slotCount,
+            zoom
+          );
           const isSelected = selectedKey === g.key;
           const toggle = () => setSelectedKey(isSelected ? null : g.key);
-          const category = groupCategory(g.records.map((r) => r.specialties));
+          const category = g.specialty;
 
           if (g.records.length === 1) {
             const r = g.records[0];
@@ -325,7 +335,7 @@ export default function MapPage() {
                 fontSize: "12px",
                 fontWeight: "bold",
               }}
-              title={`邻近点位 ${n} 位医生\n${g.records
+              title={`${CATEGORY_LABELS[category]} ${n} 位\n${g.records
                 .slice(0, 3)
                 .map((r) => r.full_name)
                 .join("；")}${n > 3 ? "…" : ""}\n点击圆点打开列表`}
@@ -344,7 +354,7 @@ export default function MapPage() {
                     }}
                   >
                     <strong style={{ fontSize: 17 }}>
-                      邻近点位 {n} 条记录
+                      {CATEGORY_LABELS[category]} · {n} 位
                     </strong>
                     <p
                       style={{
@@ -353,7 +363,7 @@ export default function MapPage() {
                         color: "#4b5563",
                       }}
                     >
-                      约 45m 范围内的地址已合并显示。
+                      约 45m 范围内同专科的地址已合并。
                     </p>
                     {g.records.map((r) => (
                       <div

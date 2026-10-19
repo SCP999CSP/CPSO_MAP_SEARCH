@@ -11,29 +11,20 @@ export type Specialty = (typeof SPECIALTIES)[number];
 /** 单一专科、命中 2 个及以上关键词、一个都没命中 */
 export type DoctorCategory = Specialty | "multi" | "none";
 
-/** 合并点位里的医生分类不一致时 */
-export type GroupCategory = DoctorCategory | "mixed";
-
-export const CATEGORY_COLORS: Record<GroupCategory, string> = {
-  Hematology: "#dc2626",
-  Neurology: "#7c3aed",
-  Rheumatology: "#ea580c",
-  Dermatology: "#db2777",
-  Gastroenterology: "#16a34a",
-  multi: "#0f172a",
-  none: "#9ca3af",
-  mixed: "#1d4ed8",
+export const CATEGORY_COLORS: Record<Specialty, string> = {
+  Hematology: "rgb(245, 12, 12)",
+  Neurology: "rgb(0, 255, 21)",
+  Rheumatology: "rgb(0, 46, 252)",
+  Dermatology: "rgb(251, 255, 0)",
+  Gastroenterology: "rgba(216, 184, 0, 0.64)",
 };
 
-export const CATEGORY_LABELS: Record<GroupCategory, string> = {
+export const CATEGORY_LABELS: Record<Specialty, string> = {
   Hematology: "Hematology",
   Neurology: "Neurology",
   Rheumatology: "Rheumatology",
   Dermatology: "Dermatology",
   Gastroenterology: "Gastroenterology",
-  multi: "多专科",
-  none: "未分类",
-  mixed: "混合点位",
 };
 
 /** 只认 5 个关键词（不区分大小写），Family Medicine 等其他专科忽略 */
@@ -50,10 +41,8 @@ export function doctorCategory(raw: string | null | undefined): DoctorCategory {
   return "multi";
 }
 
-export function groupCategory(
-  raws: (string | null | undefined)[]
-): GroupCategory {
-  const categories = new Set(raws.map(doctorCategory));
-  if (categories.size === 1) return [...categories][0];
-  return "mixed";
+export function isListedSpecialty(
+  category: DoctorCategory
+): category is Specialty {
+  return category !== "multi" && category !== "none";
 }

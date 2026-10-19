@@ -1,5 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { doctorCategory, groupCategory, matchSpecialties } from "./specialty";
+import {
+  doctorCategory,
+  isListedSpecialty,
+  matchSpecialties,
+} from "./specialty";
 
 describe("matchSpecialties", () => {
   it("only keeps the five keywords, in fixed order", () => {
@@ -33,14 +37,13 @@ describe("doctorCategory", () => {
   });
 });
 
-describe("groupCategory", () => {
-  it("keeps the shared category", () => {
-    expect(groupCategory(["Neurology", "Family Medicine | Neurology"])).toBe(
-      "Neurology"
-    );
+describe("isListedSpecialty", () => {
+  it("keeps a single keyword specialty", () => {
+    expect(isListedSpecialty("Neurology")).toBe(true);
   });
 
-  it("is mixed when doctors fall into different categories", () => {
-    expect(groupCategory(["Neurology", "Dermatology"])).toBe("mixed");
+  it("drops multi and unclassified", () => {
+    expect(isListedSpecialty("multi")).toBe(false);
+    expect(isListedSpecialty("none")).toBe(false);
   });
 });
