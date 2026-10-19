@@ -6,12 +6,21 @@ import {
 } from "./specialty";
 import type { MapLocation } from "./types";
 
-/** 网格大小（度），约 45m（多伦多纬度），网格内点位合并为一个数字标记 */
+/** 最细网格（度），约 45m（多伦多纬度）。放大到 SPLIT_ZOOM 后使用 */
 const GRID_SIZE = 0.0004;
 
-export function gridKey(lat: number, lng: number): string {
-  const cellLat = Math.floor(lat / GRID_SIZE) * GRID_SIZE;
-  const cellLng = Math.floor(lng / GRID_SIZE) * GRID_SIZE;
+/** 达到该级别后，网格回到约 45m，不同专科再拆开 */
+export const SPLIT_ZOOM = 16;
+
+/** 缩小一级，合并格子边长翻倍，挤在一起的点合成一个总数 */
+export function gridSizeForZoom(zoom: number): number {
+  const steps = Math.max(0, SPLIT_ZOOM - Math.floor(zoom));
+  return GRID_SIZE * 2 ** steps;
+}
+
+export function gridKey(lat: number, lng: number, gridSize = GRID_SIZE): string {
+  const cellLat = Math.floor(lat / gridSize) * gridSize;
+  const cellLng = Math.floor(lng / gridSize) * gridSize;
   return `${cellLat.toFixed(6)},${cellLng.toFixed(6)}`;
 }
 
@@ -22,10 +31,13 @@ export type LocationGroup = {
   records: MapLocation[];
 };
 
-export function groupByCoordinates(records: MapLocation[]): LocationGroup[] {
+export function groupByCoordinates(
+  records: MapLocation[],
+  gridSize = GRID_SIZE
+): LocationGroup[] {
   const map = new Map<string, MapLocation[]>();
   for (const r of records) {
-    const k = gridKey(r.latitude, r.longitude);
+    const k = gridKey(r.latitude, r.longitude, gridSize);
     const list = map.get(k);
     if (list) list.push(r);
     else map.set(k, [r]);
@@ -50,12 +62,15 @@ export type SpecialtyMarker = {
   records: MapLocation[];
 };
 
-export function markersBySpecialty(records: MapLocation[]): SpecialtyMarker[] {
+export function markersBySpecialty(
+  records: MapLocation[],
+  zoom = SPLIT_ZOOM
+): SpecialtyMarker[] {
   const visible = records.filter((r) =>
     isListedSpecialty(doctorCategory(r.specialties))
   );
   const markers: SpecialtyMarker[] = [];
-  for (const cell of groupByCoordinates(visible)) {
+  for (const cell of groupByCoordinates(visible, gridSizeForZoom(zoom))) {
     const bySpec = new Map<Specialty, MapLocation[]>();
     for (const r of cell.records) {
       const category = doctorCategory(r.specialties);
@@ -81,9 +96,6 @@ export function markersBySpecialty(records: MapLocation[]): SpecialtyMarker[] {
   }
   return markers;
 }
-
-/** 达到该级别后，同一地点的不同专科才拆成并排的点 */
-export const SPLIT_ZOOM = 16;
 
 /** 拆开后的点并排，间距随缩放变大，但不超过约一个街区 */
 const SLOT_SPACING_PX = 32;

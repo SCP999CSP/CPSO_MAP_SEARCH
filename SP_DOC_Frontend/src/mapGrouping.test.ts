@@ -54,6 +54,35 @@ describe("markersBySpecialty", () => {
   });
 });
 
+describe("grid clustering by zoom", () => {
+  it("merges nearby points while zoomed out and splits them at street zoom", () => {
+    const records = [
+      loc("a", "Hematology", 43.6501, -79.38),
+      loc("b", "Hematology", 43.651, -79.38),
+    ];
+    const zoomedOut = markersBySpecialty(records, SPLIT_ZOOM - 2);
+    const zoomedIn = markersBySpecialty(records, SPLIT_ZOOM);
+    expect(zoomedOut).toHaveLength(1);
+    expect(zoomedOut[0].records).toHaveLength(2);
+    expect(zoomedIn).toHaveLength(2);
+  });
+
+  it("shows one total for nearby mixed specialties until the split zoom", () => {
+    const records = [
+      loc("a", "Neurology", 43.6501, -79.38),
+      loc("b", "Dermatology", 43.651, -79.38),
+    ];
+    const shown = markersForZoom(
+      markersBySpecialty(records, SPLIT_ZOOM - 2),
+      SPLIT_ZOOM - 2
+    );
+    expect(shown).toHaveLength(1);
+    expect(shown[0].kind).toBe("site");
+    if (shown[0].kind !== "site") return;
+    expect(shown[0].records).toHaveLength(2);
+  });
+});
+
 describe("markersForZoom", () => {
   it("collapses different specialties into one point below the split zoom", () => {
     const markers = markersBySpecialty([

@@ -7,7 +7,12 @@ import {
 } from "@react-google-maps/api";
 import { fetchLocations } from "./api";
 import { boundsKey, fromLatLngBounds } from "./bounds";
-import { markersBySpecialty, markersForZoom, slotPosition } from "./mapGrouping";
+import {
+  markersBySpecialty,
+  markersForZoom,
+  slotPosition,
+  SPLIT_ZOOM,
+} from "./mapGrouping";
 import {
   CATEGORY_COLORS,
   CATEGORY_LABELS,
@@ -148,7 +153,10 @@ export default function MapPage() {
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY ?? "",
   });
 
-  const groups = useMemo(() => markersBySpecialty(locations), [locations]);
+  const groups = useMemo(
+    () => markersBySpecialty(locations, zoom),
+    [locations, zoom]
+  );
   const displayMarkers = useMemo(
     () => markersForZoom(groups, zoom),
     [groups, zoom]
@@ -257,7 +265,7 @@ export default function MapPage() {
           <div style={{ color: "#b91c1c", marginTop: 4 }}>{error}</div>
         )}
         <div style={{ marginTop: 6, color: "#4b5563", fontSize: 13 }}>
-          同一地点有多种专科时先合成一个点，放大后分开。
+          点挤在一起时先合成一个点并显示总数，放大后分开。
         </div>
         <div
           style={{
@@ -278,6 +286,7 @@ export default function MapPage() {
               count={categoryCounts.get(c) ?? 0}
             />
           ))}
+          <LegendRow color={SITE_COLOR} label="多种专科" />
         </div>
       </div>
       <GoogleMap
@@ -310,14 +319,14 @@ export default function MapPage() {
                   fontSize: "12px",
                   fontWeight: "bold",
                 }}
-                title={`同一地点 ${n} 位医生\n放大后按专科分开`}
+                title={`附近 ${n} 位医生\n放大后分开`}
                 onClick={toggle}
               >
                 {isSelected && (
                   <InfoWindowF onCloseClick={() => setSelectedKey(null)}>
                     <DoctorList
-                      title={`同一地点 · ${n} 位`}
-                      note="放大后按专科分开显示。"
+                      title={`附近 · ${n} 位`}
+                      note="点挤在一起时已合并，放大后按专科分开。"
                       records={g.records}
                     />
                   </InfoWindowF>
@@ -400,7 +409,11 @@ export default function MapPage() {
                 <InfoWindowF onCloseClick={() => setSelectedKey(null)}>
                   <DoctorList
                     title={`${CATEGORY_LABELS[category]} · ${n} 位`}
-                    note="约 45m 范围内同专科的地址已合并。"
+                    note={
+                      zoom >= SPLIT_ZOOM
+                        ? "约 45m 范围内同专科的地址已合并。"
+                        : "附近同专科的点已合并，放大后分开。"
+                    }
                     records={g.records}
                   />
                 </InfoWindowF>
