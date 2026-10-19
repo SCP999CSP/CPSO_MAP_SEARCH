@@ -45,6 +45,8 @@ jobs:
         with:
           context: SP_DOC_Backend
           push: true
+          provenance: false
+          sbom: false
           tags: |
             ${{ env.IMAGE }}:backend-${{ github.sha }}
             ${{ env.IMAGE }}:backend-latest
@@ -106,6 +108,8 @@ jobs:
         with:
           context: SP_DOC_Frontend
           push: true
+          provenance: false
+          sbom: false
           tags: |
             ${{ env.IMAGE }}:frontend-${{ github.sha }}
             ${{ env.IMAGE }}:frontend-latest
