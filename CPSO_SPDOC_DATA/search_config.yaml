@@ -1,0 +1,47 @@
+specialist_types:
+  - "Hematology"
+  - "Neurology"
+  - "Rheumatology"
+  - "Dermatology"
+  - "Gastroenterology"
+
+languages: "ENGLISH"
+include_inactive: true
+
+# 手写邮编。每个邮编会依次搜索上面 5 个专科。
+postal_codes:
+  - "L4S"
+  - "L4C"
+  - "L4B"
+  
+  - "L6C"
+  - "L6E"
+  - "L6B"
+  - "M2R"
+  - "M2M"
+  - "M2N"
+  - "M2K"
+  - "M2H"
+  - "M2J"
+  - "M1W"
+  - "M1V"
+  - "M1T"
+  - "M1S"
+  - "M1X"
+  - "M1B"
+  - "L3P"
+  - "L3R"
+  - "L3S"
+  - "L3T"
+
+
+  - "M2P"
+  - "M2L"
+  - "M3B"
+  - "M3A"
+  - "M3C"
+  - "M4A"
+
+
+
+  

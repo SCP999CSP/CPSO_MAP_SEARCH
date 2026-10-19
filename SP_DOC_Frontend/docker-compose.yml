@@ -1,0 +1,21 @@
+# VITE_GOOGLE_MAPS_API_KEY 从同目录 .env 读取，构建时写入前端
+# 需先启动后端：cd ../SP_DOC_Backend && docker compose up -d --build
+services:
+  frontend:
+    build:
+      context: .
+      args:
+        VITE_GOOGLE_MAPS_API_KEY: ${VITE_GOOGLE_MAPS_API_KEY:-}
+    container_name: sp_doc_frontend
+    environment:
+      BACKEND_URL: ${BACKEND_URL:-http://sp_doc_backend:8000}
+    ports:
+      - "8081:80"
+    networks:
+      - cpso
+    restart: unless-stopped
+
+networks:
+  cpso:
+    name: cpso_web_data_default
+    external: true

@@ -1,0 +1,17 @@
+# 需先启动数据库：cd ../CPSO_WEB_DATA && docker compose up -d
+services:
+  backend:
+    build: .
+    container_name: sp_doc_backend
+    environment:
+      DATABASE_URL: ${DOCKER_DATABASE_URL:-postgresql://postgres:postgres@cpso_postgres:5432/cpso_spdoc}
+    ports:
+      - "8001:8000"
+    networks:
+      - cpso
+    restart: unless-stopped
+
+networks:
+  cpso:
+    name: cpso_web_data_default
+    external: true
