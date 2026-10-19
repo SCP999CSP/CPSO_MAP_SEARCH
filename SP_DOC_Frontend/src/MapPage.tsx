@@ -30,6 +30,17 @@ const MAP_OPTIONS: google.maps.MapOptions = {
     latLngBounds: { north: 44.5, south: 43.0, east: -78.5, west: -80.5 },
     strictBounds: false,
   },
+  styles: [
+    {
+      featureType: "poi.business",
+      stylers: [{ visibility: "off" }],
+    },
+    {
+      featureType: "transit",
+      elementType: "labels.icon",
+      stylers: [{ visibility: "off" }],
+    },
+  ],
 };
 
 const LEGEND_CATEGORIES: DoctorCategory[] = [
